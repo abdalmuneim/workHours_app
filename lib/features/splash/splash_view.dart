@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
+import 'package:workhours/common/resources/app_color.dart';
+import 'package:workhours/common/utils/extension.dart';
+import 'package:workhours/features/splash/splash_provider.dart';
+import 'package:workhours/generated/assets/assets.dart';
+
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  late SplashProvider read = context.read<SplashProvider>();
+
+  @override
+  void initState() {
+    read.startTimer();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: 100.w,
+        height: 100.h,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [
+              AppColors.primary,
+              AppColors.white,
+              AppColors.primary,
+            ],
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                Assets.assetsImagesLogo,
+                width: 50.w,
+                height: 50.h,
+              ),
+              5.h.sh,
+              const CircularProgressIndicator(color: AppColors.primary),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
