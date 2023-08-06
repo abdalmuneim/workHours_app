@@ -2,7 +2,7 @@
   "verificationCode": "رمز التحقق",
   "verification": "تحقق",
   "requiredField": "هذا الحقل مطلوب",
-  "name": "الاسم الثلاثي",
+  "name": "الاسم",
   "continuo": "استمرار",
   "checkAllFields": "تحقق من جميع العقول",
   "welcome": "اهلا",
@@ -58,5 +58,54 @@
   },
   "resentLink": "اعادة ارسال الرمز",
   "menuOfEmployees": "قائمة الموظفين",
-  "addNewEmployee": "اضافة موظف جديد"
+  "addNewEmployee": "اضافة موظف جديد",
+  "counterEmployees": "الكلي ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})",
+  "@counterEmployees": {
+    "placeholder": {
+      "all": {
+        "type": "int"
+      },
+      "avalible": {
+        "type": "int"
+      },
+      "notAvalile": {
+        "type": "int"
+      }
+    }
+  },
+  "search": "بحث",
+  "group": "المجموعة",
+  "filterByGroup": "تصفية علي حسب المجموعة",
+  "all": "الكل",
+  "groupA": "مجموعة أ",
+  "groupB": "مجموعة ب",
+  "groupC": "مجموعة ج",
+  "available": "المتوفر",
+  "unavailable": "الغير متوفر",
+  "unavailable_text": "غير متوفر",
+  "available_text": "متوفر",
+  "vacations": "الاجازات:",
+  "from": "من",
+  "to": "الى",
+  "createList": "انشاء قائمة",
+  "chosesGroup": "اختر المجموعة",
+  "fromDate": "من تاريخ",
+  "chosesDate": "اختر التاريخ",
+  "toDate": "الى تاريخ",
+  "startFromNum": "ابدأ من رقم",
+  "enterNumOptional": "ادخل الرقم (اختياري)",
+  "numOfHours": "عدد الساعات",
+  "enterNumOfHours": "ادخل عدد الساعات",
+  "cancel": "ألغاء",
+  "shareWhatsApp": "مشاركة للواتساب",
+  "saveList": "حفظ القائمة",
+  "pDFGenerated": "إنشاء ملف PDF",
+  "pdfFileSavedAtPath": "ملف pdf محفوظ في: {path}",
+  "@pdfFileSavedAtPath": {
+    "placeholder": {
+      "path": {}
+    }
+  },
+  "happendError": "حدث خطاء ما",
+  "successShare": "لقد شاركت الملف بنجاح"
 }

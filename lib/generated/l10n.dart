@@ -579,6 +579,316 @@ class S {
       args: [],
     );
   }
+
+  /// `الكلي ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})`
+  String counterEmployees(Object all, Object avalible, Object notAvalile) {
+    return Intl.message(
+      'الكلي ($all)   المتوفر ($avalible)   الغير متوفر ($notAvalile)',
+      name: 'counterEmployees',
+      desc: '',
+      args: [all, avalible, notAvalile],
+    );
+  }
+
+  /// `بحث`
+  String get search {
+    return Intl.message(
+      'بحث',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `المجموعة`
+  String get group {
+    return Intl.message(
+      'المجموعة',
+      name: 'group',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تصفية علي حسب المجموعة`
+  String get filterByGroup {
+    return Intl.message(
+      'تصفية علي حسب المجموعة',
+      name: 'filterByGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الكل`
+  String get all {
+    return Intl.message(
+      'الكل',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مجموعة أ`
+  String get groupA {
+    return Intl.message(
+      'مجموعة أ',
+      name: 'groupA',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مجموعة ب`
+  String get groupB {
+    return Intl.message(
+      'مجموعة ب',
+      name: 'groupB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مجموعة ج`
+  String get groupC {
+    return Intl.message(
+      'مجموعة ج',
+      name: 'groupC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `المتوفر`
+  String get available {
+    return Intl.message(
+      'المتوفر',
+      name: 'available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الغير متوفر`
+  String get unavailable {
+    return Intl.message(
+      'الغير متوفر',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `غير متوفر`
+  String get unavailable_text {
+    return Intl.message(
+      'غير متوفر',
+      name: 'unavailable_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `متوفر`
+  String get available_text {
+    return Intl.message(
+      'متوفر',
+      name: 'available_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `vacations: `
+  String get vacations {
+    return Intl.message(
+      'vacations: ',
+      name: 'vacations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` من`
+  String get from {
+    return Intl.message(
+      ' من',
+      name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` الى`
+  String get to {
+    return Intl.message(
+      ' الى',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `انشاء قائمة`
+  String get createList {
+    return Intl.message(
+      'انشاء قائمة',
+      name: 'createList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اختر المجموعة`
+  String get chosesGroup {
+    return Intl.message(
+      'اختر المجموعة',
+      name: 'chosesGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `من تاريخ`
+  String get fromDate {
+    return Intl.message(
+      'من تاريخ',
+      name: 'fromDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اختر التاريخ`
+  String get chosesDate {
+    return Intl.message(
+      'اختر التاريخ',
+      name: 'chosesDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الى تاريخ`
+  String get toDate {
+    return Intl.message(
+      'الى تاريخ',
+      name: 'toDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ابدأ من رقم`
+  String get startFromNum {
+    return Intl.message(
+      'ابدأ من رقم',
+      name: 'startFromNum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ادخل الرقم (اختياري)`
+  String get enterNumOptional {
+    return Intl.message(
+      'ادخل الرقم (اختياري)',
+      name: 'enterNumOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عدد الساعات`
+  String get numOfHours {
+    return Intl.message(
+      'عدد الساعات',
+      name: 'numOfHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ادخل عدد الساعات`
+  String get enterNumOfHours {
+    return Intl.message(
+      'ادخل عدد الساعات',
+      name: 'enterNumOfHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ألغاء`
+  String get cancel {
+    return Intl.message(
+      'ألغاء',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مشاركة للواتساب`
+  String get shareWhatsApp {
+    return Intl.message(
+      'مشاركة للواتساب',
+      name: 'shareWhatsApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حفظ القائمة`
+  String get saveList {
+    return Intl.message(
+      'حفظ القائمة',
+      name: 'saveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إنشاء ملف PDF`
+  String get pDFGenerated {
+    return Intl.message(
+      'إنشاء ملف PDF',
+      name: 'pDFGenerated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PDF file saved at: {path}`
+  String pdfFileSavedAtPath(Object path) {
+    return Intl.message(
+      'PDF file saved at: $path',
+      name: 'pdfFileSavedAtPath',
+      desc: '',
+      args: [path],
+    );
+  }
+
+  /// `حدث خطاء ما`
+  String get happendError {
+    return Intl.message(
+      'حدث خطاء ما',
+      name: 'happendError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لقد شاركت الملف بنجاح`
+  String get successShare {
+    return Intl.message(
+      'لقد شاركت الملف بنجاح',
+      name: 'successShare',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

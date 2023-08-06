@@ -20,12 +20,17 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(member) => "${member} موجود بالفعل";
+  static String m0(all, avalible, notAvalile) =>
+      "الكلي (${all})   المتوفر (${avalible})   الغير متوفر (${notAvalile})";
 
-  static String m1(email) =>
+  static String m1(member) => "${member} موجود بالفعل";
+
+  static String m2(path) => "ملف pdf محفوظ في: ${path}";
+
+  static String m3(email) =>
       "لقد ارسلنا اليك رابط على بريدك الالكتروني${email} برجاء الضغط على الرابط ليتم اعادة توجيهك الي التطبيق ";
 
-  static String m2(name) => "اهلا بك يا ${name}!";
+  static String m4(name) => "اهلا بك يا ${name}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -33,18 +38,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اضافة موظف جديد"),
         "addedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم الاضافة بنجاح"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل؟"),
+        "available": MessageLookupByLibrary.simpleMessage("المتوفر"),
+        "available_text": MessageLookupByLibrary.simpleMessage("متوفر"),
+        "cancel": MessageLookupByLibrary.simpleMessage("ألغاء"),
         "checkAllFields":
             MessageLookupByLibrary.simpleMessage("تحقق من جميع العقول"),
         "checkUEmail":
             MessageLookupByLibrary.simpleMessage("تفقد بريدك الالكتروني"),
         "checkUEmailOrPassword": MessageLookupByLibrary.simpleMessage(
             "تحقق من الايميل او كلمة المرور"),
+        "chosesDate": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
+        "chosesGroup": MessageLookupByLibrary.simpleMessage("اختر المجموعة"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تاكيد الرقم السري"),
         "continuo": MessageLookupByLibrary.simpleMessage("استمرار"),
+        "counterEmployees": m0,
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "createList": MessageLookupByLibrary.simpleMessage("انشاء قائمة"),
         "createdAccountSuccess":
             MessageLookupByLibrary.simpleMessage("تم انشاء الحساب بنجاح"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),
@@ -57,6 +70,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل الاسم الاول"),
         "enterLastName":
             MessageLookupByLibrary.simpleMessage("اخل الاسم الاخير"),
+        "enterNumOfHours":
+            MessageLookupByLibrary.simpleMessage("ادخل عدد الساعات"),
+        "enterNumOptional":
+            MessageLookupByLibrary.simpleMessage("ادخل الرقم (اختياري)"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("ادخل كلمة المرور"),
         "enterValidateEmail": MessageLookupByLibrary.simpleMessage(
@@ -65,22 +82,34 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("برجاء إدخال اسم صحيح"),
         "enterValidatePassword": MessageLookupByLibrary.simpleMessage(
             "كلمة السر يجب ان تحتوي علي 6 حروف او 6 ارقام علي الاقل"),
+        "filterByGroup":
+            MessageLookupByLibrary.simpleMessage("تصفية علي حسب المجموعة"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الاول"),
+        "from": MessageLookupByLibrary.simpleMessage("من"),
+        "fromDate": MessageLookupByLibrary.simpleMessage("من تاريخ"),
+        "group": MessageLookupByLibrary.simpleMessage("المجموعة"),
+        "groupA": MessageLookupByLibrary.simpleMessage("مجموعة أ"),
+        "groupB": MessageLookupByLibrary.simpleMessage("مجموعة ب"),
+        "groupC": MessageLookupByLibrary.simpleMessage("مجموعة ج"),
+        "happendError": MessageLookupByLibrary.simpleMessage("حدث خطاء ما"),
         "haveAccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل؟"),
         "homePage": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "lastName": MessageLookupByLibrary.simpleMessage("الاسم الاخير"),
-        "memberIsAlreadyExists": m0,
+        "memberIsAlreadyExists": m1,
         "menuOfEmployees":
             MessageLookupByLibrary.simpleMessage("قائمة الموظفين"),
-        "name": MessageLookupByLibrary.simpleMessage("الاسم الثلاثي"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noInternetConnection": MessageLookupByLibrary.simpleMessage(
             "لا يوجد اتصال بالانترنت تحقق من تفعيله"),
         "notHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "numOfHours": MessageLookupByLibrary.simpleMessage("عدد الساعات"),
+        "pDFGenerated": MessageLookupByLibrary.simpleMessage("إنشاء ملف PDF"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمه المرور غير مطابقه"),
+        "pdfFileSavedAtPath": m2,
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("اضغط مجددا للخروج"),
@@ -91,12 +120,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أعد الارسال خلال"),
         "resentLink": MessageLookupByLibrary.simpleMessage("اعادة ارسال الرمز"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+        "saveList": MessageLookupByLibrary.simpleMessage("حفظ القائمة"),
+        "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "shareWhatsApp":
+            MessageLookupByLibrary.simpleMessage("مشاركة للواتساب"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "startFromNum": MessageLookupByLibrary.simpleMessage("ابدأ من رقم"),
+        "successShare":
+            MessageLookupByLibrary.simpleMessage("لقد شاركت الملف بنجاح"),
+        "to": MessageLookupByLibrary.simpleMessage("الى"),
+        "toDate": MessageLookupByLibrary.simpleMessage("الى تاريخ"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("الغير متوفر"),
+        "unavailable_text": MessageLookupByLibrary.simpleMessage("غير متوفر"),
+        "vacations": MessageLookupByLibrary.simpleMessage("الاجازات:"),
         "verification": MessageLookupByLibrary.simpleMessage("تحقق"),
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
-        "weSendEmailForVerifyUEmail": m1,
+        "weSendEmailForVerifyUEmail": m3,
         "welcome": MessageLookupByLibrary.simpleMessage("اهلا"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحبا بعودتك"),
-        "welcomeO": m2
+        "welcomeO": m4
       };
 }

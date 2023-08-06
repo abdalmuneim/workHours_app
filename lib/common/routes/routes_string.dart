@@ -1,14 +1,14 @@
 part of 'routes.dart';
 
 class RoutesStrings {
-  static const splash = '/';
+  static const initial = '/initial';
   static const start = '/start';
   static const signIn = '/signIn';
   static const verifyEmail = '/verifyEmail';
   static const signUp = '/signUp';
   static const home = '/home';
-  static const familyMembers = '/familyMembers';
-  static const addFamilyMembers = '/addFamilyMembers';
-  static const editFamilyMembers = '/editFamilyMembers';
+  static const createList = '/createList';
+  static const listOfEmployees = '/';
+  static const addEmployee = '/addEmployee';
   static const notification = '/notification';
 }

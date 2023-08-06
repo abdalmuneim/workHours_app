@@ -28,6 +28,7 @@ class _SignInViewState extends State<SignInView> {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size(100.w, 3.h), child: AppBar()),
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -44,61 +45,49 @@ class _SignInViewState extends State<SignInView> {
             3.h.sh,
 
             /// form
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.w),
-              width: 100.w,
-              child: Form(
-                key: watch.globalKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    CustomText(
-                      text: S.of(context).signIn,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    4.h.sh,
+            Form(
+              key: watch.globalKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CustomText(
+                    text: S.of(context).signIn,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  4.h.sh,
 
-                    /// email
-                    CustomText(
-                      text: S.of(context).email,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    .5.h.sh,
-                    CustomTextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: watch.emailTEXT,
-                      border: true,
-                      hintText: S.of(context).enterEmail,
-                      validator: (value) => AppValidator.validateFields(
-                          value, ValidationType.email, context),
-                    ),
-                    4.h.sh,
+                  /// email
+                  CustomTextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: watch.emailTEXT,
+                    border: true,
+                    hintText: S.of(context).enterEmail,
+                    labelText: S.of(context).email,
+                    validator: (value) => AppValidator.validateFields(
+                        value, ValidationType.email, context),
+                  ),
+                  4.h.sh,
 
-                    /// password
-                    CustomText(
-                      text: S.of(context).password,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    .5.h.sh,
-                    CustomTextFormField(
-                      controller: watch.passwordTEXT,
-                      obscureText: true,
-                      border: true,
-                      hintText: S.of(context).enterPassword,
-                      validator: (value) => AppValidator.validateFields(
-                          value, ValidationType.password, context),
-                    ),
+                  /// password
+                  CustomTextFormField(
+                    controller: watch.passwordTEXT,
+                    obscureText: true,
+                    border: true,
+                    hintText: S.of(context).enterPassword,
+                    labelText: S.of(context).password,
+                    validator: (value) => AppValidator.validateFields(
+                        value, ValidationType.password, context),
+                  ),
 
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        S.of(context).doUForgetPassword,
-                        style: TextStyle(color: AppColors.black),
-                      ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      S.of(context).doUForgetPassword,
+                      style: TextStyle(color: AppColors.black),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             2.h.sh,

@@ -14,6 +14,10 @@ ThemeData get applicationTheme => ThemeData(
       primaryColorDark: Colors.black,
       disabledColor: Colors.grey,
 
+      iconTheme: IconThemeData(
+        color: AppColors.lightGrey,
+      ),
+
       ///list tile
       listTileTheme: ListTileThemeData(
         iconColor: AppColors.black,
@@ -39,7 +43,6 @@ ThemeData get applicationTheme => ThemeData(
           statusBarIconBrightness: Brightness.dark,
           statusBarColor: AppColors.scaffoldColor,
         ),
-        toolbarHeight: 100,
         backgroundColor: AppColors.scaffoldColor,
         elevation: 0,
         titleTextStyle: TextStyle(
@@ -48,8 +51,8 @@ ThemeData get applicationTheme => ThemeData(
           fontWeight: FontWeight.bold,
           color: AppColors.black,
         ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(),
+        centerTitle: false,
+        iconTheme: const IconThemeData(color: AppColors.black),
       ),
 
       /// Button Theme
@@ -72,7 +75,8 @@ ThemeData get applicationTheme => ThemeData(
       /// Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(90.w, 50),
+          minimumSize: Size(100.w, 50),
+          maximumSize: Size(100.w, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -82,6 +86,8 @@ ThemeData get applicationTheme => ThemeData(
             color: AppColors.black,
             fontWeight: FontWeight.bold,
           ),
+          // side: BorderSide(color: AppColors.grey.withOpacity(.3)),
+
           backgroundColor: AppColors.lightPrimary,
         ),
       ),
@@ -116,8 +122,8 @@ ThemeData get applicationTheme => ThemeData(
         ),
         labelMedium: TextStyle(
           fontFamily: FontManager.fontFamily,
-          fontSize: 15.sp,
-          fontWeight: FontWeightManger.regular,
+          fontSize: 13.sp,
+          fontWeight: FontWeightManger.semiBold,
           color: AppColors.black,
         ),
         labelSmall: TextStyle(

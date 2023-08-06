@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:workhours/common/resources/app_color.dart';
+import 'package:workhours/common/utils/extension.dart';
+import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/generated/assets/assets.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -18,8 +20,8 @@ class CustomTextFormField extends StatefulWidget {
     this.obscureText,
     this.border = true,
     this.suffixIcon,
-    this.prefixIconColor = Colors.white,
-    this.suffixIconColor = Colors.white,
+    this.prefixIconColor = AppColors.lightGrey,
+    this.suffixIconColor = AppColors.lightGrey,
     this.controller,
     this.textDirection,
     this.validator,
@@ -38,8 +40,9 @@ class CustomTextFormField extends StatefulWidget {
     this.height,
     this.contentPadding,
     this.focusNode,
-    this.onTap,
     this.fillColor,
+    this.onTap,
+    this.isLabel = true,
     this.borderRadius,
   }) : super(key: key);
   final int? maxLines, minLines;
@@ -47,10 +50,8 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? prefixIcon, suffixIcon;
   final Color? prefixIconColor;
   final Color? suffixIconColor, fillColor;
-  final bool? filled, obscureText;
-  final bool border;
-  final bool isNumberOnly;
-  final bool? enabled;
+  final bool? filled, obscureText, enabled;
+  final bool border, isNumberOnly, isLabel;
   final TextAlign textAlign;
   final double radius;
   final BorderRadius? borderRadius;
@@ -80,73 +81,94 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Color fillColor = AppColors.white;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: TextFormField(
-        onTap: () {
-          setState(() {
-            fillColor = AppColors.lightPrimary;
-          });
-        },
-        focusNode: widget.focusNode,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        textInputAction: widget.textInputAction,
-        autofocus: widget.autofocus ?? false,
-        maxLines: widget.maxLines,
-        minLines: widget.minLines,
-        enabled: widget.enabled,
-        validator: widget.validator,
-        controller: widget.controller,
-        onChanged: widget.onChange,
-        onSaved: widget.onSave,
-        textDirection: widget.textDirection,
-        obscureText: obsecureText,
-        obscuringCharacter: '*',
-        keyboardType: widget.isNumberOnly
-            ? const TextInputType.numberWithOptions(decimal: true)
-            : widget.keyboardType,
-        inputFormatters: widget.isNumberOnly
-            ? [
-                FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
-              ]
-            : null,
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-        textAlign: widget.textAlign,
-        maxLength: widget.maxLength,
-        decoration: InputDecoration(
-          counterText: widget.counterText,
-          suffixIcon: widget.suffixIcon ?? toggleVisibility(),
-          suffixIconColor: widget.suffixIconColor,
-          prefixIcon: widget.prefixIcon,
-          prefixIconColor: widget.prefixIconColor,
-          // contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          hintText: widget.hintText,
-          hintStyle: Theme.of(context).textTheme.bodyMedium,
-          labelText: widget.labelText,
-          labelStyle: Theme.of(context).textTheme.titleLarge,
-          errorStyle: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: AppColors.red),
-          filled: true,
-          fillColor: widget.fillColor ?? fillColor,
-          enabledBorder: widget.border
-              ? OutlineInputBorder(
-                  borderRadius: widget.borderRadius ??
-                      BorderRadius.circular(widget.radius),
-                  borderSide: BorderSide(color: AppColors.grey.withOpacity(.3)),
-                )
-              : null,
-          border: widget.border
-              ? OutlineInputBorder(
-                  borderRadius: widget.borderRadius ??
-                      BorderRadius.circular(widget.radius),
-                  borderSide: BorderSide(color: AppColors.grey.withOpacity(.3)),
-                )
-              : null,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.isLabel) ...[
+          CustomText(
+            text: widget.labelText ?? widget.hintText ?? "",
+            style: Theme.of(context).textTheme.labelSmall,
+          ),
+          .5.h.sh,
+        ],
+        SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: TextFormField(
+            onTap: widget.onTap ??
+                () {
+                  setState(() {
+                    fillColor = AppColors.lightPrimary;
+                  });
+                },
+            focusNode: widget.focusNode,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            textInputAction: widget.textInputAction,
+            autofocus: widget.autofocus ?? false,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            enabled: widget.enabled,
+            validator: widget.validator,
+            controller: widget.controller,
+            onChanged: widget.onChange,
+            onSaved: widget.onSave,
+            textDirection: widget.textDirection,
+            obscureText: obsecureText,
+            obscuringCharacter: '*',
+            keyboardType: widget.isNumberOnly
+                ? const TextInputType.numberWithOptions(decimal: true)
+                : widget.keyboardType,
+            inputFormatters: widget.isNumberOnly
+                ? [
+                    FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+                  ]
+                : null,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+            textAlign: widget.textAlign,
+            maxLength: widget.maxLength,
+            decoration: InputDecoration(
+              counterText: widget.counterText,
+              suffixIcon: widget.suffixIcon ?? toggleVisibility(),
+              suffixIconColor: widget.suffixIconColor,
+              prefixIcon: widget.prefixIcon,
+              prefixIconColor: widget.prefixIconColor,
+              contentPadding: EdgeInsets.symmetric(horizontal: 10),
+              hintText: widget.hintText,
+              hintStyle: Theme.of(context).textTheme.bodyMedium,
+              // labelText: widget.labelText,
+              labelStyle: Theme.of(context).textTheme.titleLarge,
+              errorStyle: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: AppColors.red),
+              filled: true,
+              fillColor: widget.fillColor ?? fillColor,
+              enabledBorder: widget.border
+                  ? OutlineInputBorder(
+                      borderRadius: widget.borderRadius ??
+                          BorderRadius.circular(widget.radius),
+                      borderSide: BorderSide(color: AppColors.veryLightGrey),
+                    )
+                  : null,
+              disabledBorder: widget.border
+                  ? OutlineInputBorder(
+                      borderRadius: widget.borderRadius ??
+                          BorderRadius.circular(widget.radius),
+                      borderSide: BorderSide(color: AppColors.veryLightGrey),
+                    )
+                  : null,
+              border: widget.border
+                  ? OutlineInputBorder(
+                      borderRadius: widget.borderRadius ??
+                          BorderRadius.circular(widget.radius),
+                      borderSide: BorderSide(color: AppColors.veryLightGrey),
+                    )
+                  : null,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
