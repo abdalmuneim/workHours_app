@@ -43,16 +43,17 @@ class PdfGenerateApi {
     final ByteData notoNaskhArabic = await rootBundle
         .load("assets/fonts/NotoNaskhArabic-VariableFont_wght.ttf");
     final ttfFont = await Font.ttf(notoNaskhArabic);
-    final ByteData lamaSansBold =
+    /* final ByteData lamaSansBold =
         await rootBundle.load("assets/fonts/LamaSans-Bold.ttf");
     final ttfFontLamaSansBold = await Font.ttf(lamaSansBold);
     final ByteData lamaSansRegular =
-        await rootBundle.load("assets/fonts/LamaSans-Regular.ttf");
-    final ttfFontLamaSansRegular = await Font.ttf(lamaSansRegular);
+        await rootBundle.load("assets/fonts/LamaSans-Regular.ttf"); 
+    final ttfFontLamaSansRegular = await Font.ttf(lamaSansRegular);*/
 
     /// create pages
     pdf.addPage(
       MultiPage(
+        theme: ThemeData.withFont(base: ttfFont, bold: ttfFont),
         build: (context) {
           return [
             Directionality(
@@ -69,7 +70,6 @@ class PdfGenerateApi {
             ),
           ];
         },
-        theme: ThemeData.withFont(base: ttfFont, bold: ttfFontLamaSansBold),
       ),
     );
 
@@ -84,9 +84,9 @@ class PdfGenerateApi {
         Text(
           S.of(_context).menuOfEmployees,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 14),
 
         /// date
         Container(
@@ -96,7 +96,10 @@ class PdfGenerateApi {
             maxLines: 2,
             textAlign: TextAlign.center,
             text: TextSpan(
-              style: TextStyle(color: PdfColor.fromHex("#6A6A6A")),
+              style: TextStyle(
+                color: PdfColor.fromHex("#6A6A6A"),
+                fontSize: 20,
+              ),
               children: [
                 TextSpan(
                   text: "${S.of(_context).from} ",
@@ -125,6 +128,7 @@ class PdfGenerateApi {
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: PdfColor.fromHex("#6A6A6A"),
+                fontSize: 20,
               ),
             ),
             Text(
@@ -132,7 +136,7 @@ class PdfGenerateApi {
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: PdfColor.fromHex("#6A6A6A"),
-                fontSize: 18,
+                fontSize: 20,
               ),
             ),
           ],
@@ -153,33 +157,30 @@ class PdfGenerateApi {
             : i % 3 == 0
                 ? "ج"
                 : "ب")[index];
-    return Container(
-      width: 100.w,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              group,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: PdfColor.fromHex("#6A6A6A"),
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            group,
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: PdfColor.fromHex("#6A6A6A"),
             ),
-            Text(
-              "محمد احمد",
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: PdfColor.fromHex("#6A6A6A"),
-              ),
+          ),
+          Text(
+            "محمد احمد",
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: PdfColor.fromHex("#6A6A6A"),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
