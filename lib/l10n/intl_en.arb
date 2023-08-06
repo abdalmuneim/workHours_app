@@ -66,5 +66,48 @@
   },
   "resentLink": "اعادة ارسال الرمز",
   "menuOfEmployees": "قائمة الموظفين",
-  "addNewEmployee": "اضافة موظف جديد"
+  "addNewEmployee": "اضافة موظف جديد",
+  "counterEmployees": "الكلي ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})",
+  "@counterEmployees": {
+    "placeholder": {
+      "all": {},
+      "avalible": {},
+      "notAvalile": {}
+    }
+  },
+  "search": "بحث",
+  "group": "المجموعة",
+  "filterByGroup": "تصفية علي حسب المجموعة",
+  "all": "الكل",
+  "groupA": "مجموعة أ",
+  "groupB": "مجموعة ب",
+  "groupC": "مجموعة ج",
+  "available": "المتوفر",
+  "unavailable": "الغير متوفر",
+  "unavailable_text": "غير متوفر",
+  "available_text": "متوفر",
+  "vacations": "vacations: ",
+  "from": " من",
+  "to": " الى",
+  "createList": "انشاء قائمة",
+  "chosesGroup": "اختر المجموعة",
+  "fromDate": "من تاريخ",
+  "chosesDate": "اختر التاريخ",
+  "toDate": "الى تاريخ",
+  "startFromNum": "ابدأ من رقم",
+  "enterNumOptional": "ادخل الرقم (اختياري)",
+  "numOfHours": "عدد الساعات",
+  "enterNumOfHours": "ادخل عدد الساعات",
+  "cancel": "ألغاء",
+  "shareWhatsApp": "مشاركة للواتساب",
+  "saveList": "حفظ القائمة",
+  "pDFGenerated": "إنشاء ملف PDF",
+  "pdfFileSavedAtPath": "PDF file saved at: {path}",
+  "@pdfFileSavedAtPath": {
+    "placeholder": {
+      "path": {}
+    }
+  },
+  "happendError": "حدث خطاء ما",
+  "successShare": "لقد شاركت الملف بنجاح"
 }

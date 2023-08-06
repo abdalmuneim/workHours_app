@@ -30,16 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
 
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
-
-  # google_fonts: ^4.0.4
-  cached_network_image: ^3.2.3
-  lottie: ^2.4.0
-  flutter_svg: ^2.0.7
-  qr_flutter: ^4.1.0
 
   sizer: ^2.0.15
   permission_handler: ^10.3.0
@@ -54,17 +51,22 @@ dependencies:
   get_it: ^7.2.0
   dartz: ^0.10.1
 
-  google_sign_in: ^6.1.4
-  firebase_core: ^2.15.0
-  firebase_auth: ^4.7.0
-  cloud_firestore: ^4.8.3
-  firebase_storage: ^11.2.5
-  firebase_messaging: ^14.6.5
-  flutter_local_notifications: ^15.1.0+1
+  # google_sign_in: ^6.1.4
+  # firebase_core: ^2.15.0
+  # firebase_auth: ^4.7.0
+  # cloud_firestore: ^4.8.3
+  # firebase_storage: ^11.2.5
+  # firebase_messaging: ^14.6.5
+  # flutter_local_notifications: ^15.1.0+1
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  # google_fonts: ^4.0.4
+  cached_network_image: ^3.2.3
+  lottie: ^2.4.0
+  flutter_svg: ^2.0.7
+  qr_flutter: ^4.1.0
+  printing: ^5.11.0
+  # open_file: ^3.3.2
+  share_plus: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +98,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/svg/
+    - assets/images/animations/
     - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -122,6 +126,10 @@ flutter:
           weight: 400
         - asset: assets/fonts/LamaSans-Thin.ttf
           weight: 300
+    - family: NotoNaskhArabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-VariableFont_wght.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

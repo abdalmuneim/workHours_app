@@ -30,6 +30,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size(100.w, 3.h), child: AppBar()),
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -44,29 +45,25 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
               width: 100.w,
             ),
             5.h.sh,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.w),
-              width: 100.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  CustomText(
-                    text: S.of(context).checkUEmail,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  3.h.sh,
-                  CustomText(
-                    text: S.of(context).weSendEmailForVerifyUEmail(
-                            "${Provider.of<SignInProvider>(
-                          context,
-                          listen: false,
-                        ).emailTEXT.text}"),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                CustomText(
+                  text: S.of(context).checkUEmail,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                3.h.sh,
+                CustomText(
+                  text: S.of(context).weSendEmailForVerifyUEmail(
+                          "${Provider.of<SignInProvider>(
+                        context,
+                        listen: false,
+                      ).emailTEXT.text}"),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
             TextButton(
               onPressed: () {},

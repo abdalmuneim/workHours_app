@@ -11,7 +11,7 @@ class Utils {
 
   /// bottom sheet
   static Future showBottomSheet(
-          {required Widget body, Color? color = AppColors.primary}) =>
+          {required Widget body, Color? color = AppColors.white}) =>
       showModalBottomSheet(
         backgroundColor: color,
         shape: const RoundedRectangleBorder(
@@ -89,4 +89,26 @@ class Utils {
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         ),
       );
+
+  static displayDatePicker(ValueChanged<DateTime> onChange,
+      {DateTime? initial, DateTime? selected}) async {
+    var date = await showDatePicker(
+      context: _context,
+      initialDate: selected ?? DateTime.now(),
+      firstDate: initial ?? DateTime.now(),
+      lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1),
+      builder: (context, child) => Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: AppColors.primary,
+          ),
+        ),
+        child: child!,
+      ),
+    );
+
+    if (date != null) {
+      onChange(date);
+    }
+  }
 }

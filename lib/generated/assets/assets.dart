@@ -37,6 +37,18 @@ class Assets {
   /// assets/images/person.svg
   static const String assetsImagesPerson = "assets/images/person.svg";
 
+  /// Assets for assetsImagesSvgArrowBackIc
+  /// assets/images/svg/arrow-back-ic.svg
+  static const String assetsImagesSvgArrowBackIc = "assets/images/svg/arrow-back-ic.svg";
+
+  /// Assets for assetsImagesSvgCalenderIc
+  /// assets/images/svg/calender-ic.svg
+  static const String assetsImagesSvgCalenderIc = "assets/images/svg/calender-ic.svg";
+
+  /// Assets for assetsImagesSvgWhatsappIc
+  /// assets/images/svg/whatsapp-ic.svg
+  static const String assetsImagesSvgWhatsappIc = "assets/images/svg/whatsapp-ic.svg";
+
   /// Assets for assetsImagesVectorTopL
   /// assets/images/VectorTopL.png
   static const String assetsImagesVectorTopL = "assets/images/VectorTopL.png";

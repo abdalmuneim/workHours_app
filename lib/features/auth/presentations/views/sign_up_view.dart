@@ -32,6 +32,7 @@ class _SignUpViewState extends State<SignUpView> {
         ),
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -41,129 +42,95 @@ class _SignUpViewState extends State<SignUpView> {
               height: 10.w,
             ),
             4.h.sh,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.w),
-              width: 100.w,
-              child: Form(
-                key: watch.globalKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    CustomText(
-                      text: S.of(context).createAccount,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    4.h.sh,
+            Form(
+              key: watch.globalKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CustomText(
+                    text: S.of(context).createAccount,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  4.h.sh,
 
-                    /// name
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: S.of(context).firstName,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                              1.w.sh,
-                              CustomTextFormField(
-                                keyboardType: TextInputType.text,
-                                controller: watch.firstNameTEXT,
-                                border: true,
-                                hintText: S.of(context).enterFirstName,
-                                validator: (value) =>
-                                    AppValidator.validateFields(
-                                        value, ValidationType.name, context),
-                              ),
-                            ],
-                          ),
+                  /// name
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: CustomTextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: watch.firstNameTEXT,
+                          border: true,
+                          hintText: S.of(context).enterFirstName,
+                          labelText: S.of(context).firstName,
+                          validator: (value) => AppValidator.validateFields(
+                              value, ValidationType.name, context),
                         ),
-                        3.w.sw,
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: S.of(context).lastName,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                              1.w.sh,
-                              CustomTextFormField(
-                                keyboardType: TextInputType.text,
-                                controller: watch.lastNAmeTEXT,
-                                border: true,
-                                hintText: S.of(context).enterLastName,
-                                validator: (value) =>
-                                    AppValidator.validateFields(
-                                        value, ValidationType.name, context),
-                              ),
-                            ],
-                          ),
+                      ),
+                      3.w.sw,
+                      Expanded(
+                        child: CustomTextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: watch.lastNAmeTEXT,
+                          border: true,
+                          hintText: S.of(context).enterLastName,
+                          labelText: S.of(context).lastName,
+                          validator: (value) => AppValidator.validateFields(
+                              value, ValidationType.name, context),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
+                  3.h.sh,
 
-                    /// email
-                    3.h.sh,
-                    CustomText(
-                      text: S.of(context).email,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    1.w.sh,
-                    CustomTextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: watch.emailTEXT,
-                      border: true,
-                      hintText: S.of(context).enterEmail,
-                      validator: (value) => AppValidator.validateFields(
-                          value, ValidationType.email, context),
-                    ),
+                  /// email
+                  CustomTextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: watch.emailTEXT,
+                    border: true,
+                    hintText: S.of(context).enterEmail,
+                    labelText: S.of(context).email,
+                    validator: (value) => AppValidator.validateFields(
+                        value, ValidationType.email, context),
+                  ),
+                  3.h.sh,
 
-                    /// password
-                    3.h.sh,
-                    CustomText(
-                      text: S.of(context).password,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    1.w.sh,
-                    CustomTextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: watch.passwordTEXT,
-                      border: true,
-                      hintText: S.of(context).enterPassword,
-                      validator: (value) => AppValidator.validateFields(
-                          value, ValidationType.password, context),
-                      obscureText: true,
-                    ),
+                  /// password
+                  CustomTextFormField(
+                    keyboardType: TextInputType.text,
+                    controller: watch.passwordTEXT,
+                    border: true,
+                    hintText: S.of(context).enterPassword,
+                    labelText: S.of(context).password,
+                    validator: (value) => AppValidator.validateFields(
+                        value, ValidationType.password, context),
+                    obscureText: true,
+                  ),
 
-                    /// confirm Password
-                    3.h.sh,
-                    CustomText(
-                      text: S.of(context).confirmPassword,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    1.w.sh,
-                    CustomTextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: watch.confirmPasswordTEXT,
-                      border: true,
-                      hintText: S.of(context).enterPassword,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return S.of(context).requiredField;
-                        }
-                        if (value != watch.passwordTEXT.text) {
-                          return S.of(context).passwordsDoNotMatch;
-                        }
-                        return null;
-                      },
-                      obscureText: true,
-                    ),
-                    4.h.sh,
-                  ],
-                ),
+                  3.h.sh,
+
+                  /// confirm Passwor
+
+                  CustomTextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: watch.confirmPasswordTEXT,
+                    border: true,
+                    hintText: S.of(context).enterPassword,
+                    labelText: S.of(context).confirmPassword,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return S.of(context).requiredField;
+                      }
+                      if (value != watch.passwordTEXT.text) {
+                        return S.of(context).passwordsDoNotMatch;
+                      }
+                      return null;
+                    },
+                    obscureText: true,
+                  ),
+                  4.h.sh,
+                ],
               ),
             ),
 

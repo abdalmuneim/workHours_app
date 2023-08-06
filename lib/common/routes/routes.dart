@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:workhours/features/auth/presentations/views/sign_in_view.dart';
 import 'package:workhours/features/auth/presentations/views/sign_up_view.dart';
 import 'package:workhours/features/auth/presentations/views/verify_email_view.dart';
+import 'package:workhours/features/create_list/presentations/views/create_list_view.dart';
+import 'package:workhours/features/create_list/presentations/views/list_of_employees_view.dart';
 import 'package:workhours/features/home/presentations/views/home_view.dart';
 import 'package:workhours/features/splash/splash_view.dart';
 part './routes_string.dart';
@@ -12,8 +14,8 @@ class Routes {
     routes: <GoRoute>[
       /// splash
       GoRoute(
-        name: RoutesStrings.splash,
-        path: RoutesStrings.splash,
+        name: RoutesStrings.initial,
+        path: RoutesStrings.initial,
         builder: (BuildContext context, GoRouterState state) {
           return const SplashView();
         },
@@ -52,6 +54,24 @@ class Routes {
         path: RoutesStrings.home,
         builder: (BuildContext context, GoRouterState state) {
           return const HomeView();
+        },
+      ),
+
+      /// createList
+      GoRoute(
+        name: RoutesStrings.createList,
+        path: RoutesStrings.createList,
+        builder: (BuildContext context, GoRouterState state) {
+          return const CreateListView();
+        },
+      ),
+
+      /// createdListEmployees
+      GoRoute(
+        name: RoutesStrings.listOfEmployees,
+        path: RoutesStrings.listOfEmployees,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ListOfEmployeesView();
         },
       ),
     ],
