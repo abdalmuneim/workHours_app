@@ -41,7 +41,7 @@ ThemeData get applicationTheme => ThemeData(
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark,
-          statusBarColor: AppColors.scaffoldColor,
+          statusBarColor: AppColors.scaffoldColor2,
         ),
         backgroundColor: AppColors.scaffoldColor,
         elevation: 0,
@@ -75,6 +75,7 @@ ThemeData get applicationTheme => ThemeData(
       /// Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          elevation: 3,
           minimumSize: Size(100.w, 50),
           maximumSize: Size(100.w, 50),
           shape: RoundedRectangleBorder(

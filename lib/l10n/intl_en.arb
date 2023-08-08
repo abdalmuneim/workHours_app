@@ -86,7 +86,7 @@
   "unavailable": "الغير متوفر",
   "unavailable_text": "غير متوفر",
   "available_text": "متوفر",
-  "vacations": "vacations: ",
+  "vacations": "vacations",
   "from": " من",
   "to": " الى",
   "createList": "انشاء قائمة",
@@ -109,5 +109,23 @@
     }
   },
   "happendError": "حدث خطاء ما",
-  "successShare": "لقد شاركت الملف بنجاح"
+  "successShare": "لقد شاركت الملف بنجاح",
+  "forgetPassword": "نسيت كلمة المرور",
+  "next": "التالي",
+  "newPassword": "كلمة المرور الجديدة",
+  "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+  "changePassword": "تغيير كلمة المرور",
+  "optional": "(اختياري)",
+  "addNewGroup": "اضافة مجموعة جديدة",
+  "enterName": "ادخل الاسم",
+  "addEmployee": "اضافة موظف",
+  "groupName": "اسم المجموعة",
+  "addGroup": "اضافة مجموعة",
+  "add": "إضافة",
+  "editEmployee": "تعديل موظف",
+  "profile": "الملف الشخصي",
+  "logOut": "تسجيل الخروج",
+  "oldPassword": "كلمة المرور الحالية",
+  "date": "التاريخ",
+  "day": "اليوم"
 }

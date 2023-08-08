@@ -700,10 +700,10 @@ class S {
     );
   }
 
-  /// `vacations: `
+  /// `vacations`
   String get vacations {
     return Intl.message(
-      'vacations: ',
+      'vacations',
       name: 'vacations',
       desc: '',
       args: [],
@@ -885,6 +885,186 @@ class S {
     return Intl.message(
       'لقد شاركت الملف بنجاح',
       name: 'successShare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نسيت كلمة المرور`
+  String get forgetPassword {
+    return Intl.message(
+      'نسيت كلمة المرور',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `التالي`
+  String get next {
+    return Intl.message(
+      'التالي',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور الجديدة`
+  String get newPassword {
+    return Intl.message(
+      'كلمة المرور الجديدة',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكيد كلمة المرور الجديدة`
+  String get confirmNewPassword {
+    return Intl.message(
+      'تأكيد كلمة المرور الجديدة',
+      name: 'confirmNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تغيير كلمة المرور`
+  String get changePassword {
+    return Intl.message(
+      'تغيير كلمة المرور',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(اختياري)`
+  String get optional {
+    return Intl.message(
+      '(اختياري)',
+      name: 'optional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضافة مجموعة جديدة`
+  String get addNewGroup {
+    return Intl.message(
+      'اضافة مجموعة جديدة',
+      name: 'addNewGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ادخل الاسم`
+  String get enterName {
+    return Intl.message(
+      'ادخل الاسم',
+      name: 'enterName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضافة موظف`
+  String get addEmployee {
+    return Intl.message(
+      'اضافة موظف',
+      name: 'addEmployee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اسم المجموعة`
+  String get groupName {
+    return Intl.message(
+      'اسم المجموعة',
+      name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضافة مجموعة`
+  String get addGroup {
+    return Intl.message(
+      'اضافة مجموعة',
+      name: 'addGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إضافة`
+  String get add {
+    return Intl.message(
+      'إضافة',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل موظف`
+  String get editEmployee {
+    return Intl.message(
+      'تعديل موظف',
+      name: 'editEmployee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الملف الشخصي`
+  String get profile {
+    return Intl.message(
+      'الملف الشخصي',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الخروج`
+  String get logOut {
+    return Intl.message(
+      'تسجيل الخروج',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور الحالية`
+  String get oldPassword {
+    return Intl.message(
+      'كلمة المرور الحالية',
+      name: 'oldPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `التاريخ`
+  String get date {
+    return Intl.message(
+      'التاريخ',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اليوم`
+  String get day {
+    return Intl.message(
+      'اليوم',
+      name: 'day',
       desc: '',
       args: [],
     );

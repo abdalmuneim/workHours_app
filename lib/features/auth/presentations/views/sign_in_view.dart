@@ -5,6 +5,7 @@ import 'package:workhours/common/helper/validator.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
+import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
@@ -26,18 +27,22 @@ class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size(100.w, 3.h), child: AppBar()),
+      appBar: CustomAppBar(
+        backButton: false,
+        heightAppBar: 80,
+        backgroundColor: AppColors.scaffoldColor,
+        CustomTitle: Image.asset(
+          Assets.assetsImagesLogo,
+          width: 50.w,
+          height: 10.w,
+        ),
+        titleCenter: true,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              Assets.assetsImagesLogo,
-              width: 50.w,
-              height: 10.w,
-            ),
-            1.h.sh,
             Image.asset(
               Assets.assetsImagesWorkInProgress,
               width: 100.w,
@@ -81,7 +86,7 @@ class _SignInViewState extends State<SignInView> {
                   ),
 
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => read.forgetPassword(),
                     child: Text(
                       S.of(context).doUForgetPassword,
                       style: TextStyle(color: AppColors.black),

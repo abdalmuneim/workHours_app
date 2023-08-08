@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 
-class SignUpProvider extends ChangeNotifier {
+class ProfileProvider extends ChangeNotifier {
   final _context = NavigationService.context;
 
   final GlobalKey<FormState> _globalKey =
-      GlobalKey<FormState>(debugLabel: "sign up");
+      GlobalKey<FormState>(debugLabel: "profile");
   GlobalKey<FormState> get globalKey => _globalKey;
 
   final firstNameTEXT = TextEditingController();
@@ -19,22 +19,21 @@ class SignUpProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  signUp() async {
-    if (_globalKey.currentState!.validate()) {
-      _isLoading = true;
-      notifyListeners();
-      Future.delayed(Duration(seconds: 2), () {
-        _context.pushReplacementNamed(
-          RoutesStrings.verifyEmail,
-          queryParams: {"from": RoutesStrings.signUp},
-        );
-        _isLoading = false;
-        notifyListeners();
-      });
+  navToChangePassword() {
+    _context.pushNamed(RoutesStrings.changePassword);
+  }
+
+  save() {
+    if (globalKey.currentState!.validate()) {
+      _context.pop();
     }
   }
 
-  haveAccount() {
-    _context.pop();
+  back() {
+    _context.pushReplacementNamed(RoutesStrings.home);
+  }
+
+  logOut() {
+    _context.pushReplacementNamed(RoutesStrings.signIn);
   }
 }

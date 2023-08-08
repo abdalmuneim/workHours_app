@@ -8,20 +8,39 @@ import 'package:workhours/common/widgets/feature_widget/filter_by_group/provider
 import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 
-class BottomSheetFilterByGroup<T> extends StatelessWidget {
+class BottomSheetFilterByGroup<T> extends StatefulWidget {
   const BottomSheetFilterByGroup({
     super.key,
     required this.title,
+    this.selectedKey,
+    this.selectedValue,
   });
 
   final String title;
+  final FilteringByGroupEnum? selectedKey;
+  final String? selectedValue;
+
+  @override
+  State<BottomSheetFilterByGroup<T>> createState() =>
+      _BottomSheetFilterByGroupState<T>();
+}
+
+class _BottomSheetFilterByGroupState<T>
+    extends State<BottomSheetFilterByGroup<T>> {
+  late BottomSheetFilterByGroupProvider read =
+      context.read<BottomSheetFilterByGroupProvider>();
+  late BottomSheetFilterByGroupProvider watch =
+      context.watch<BottomSheetFilterByGroupProvider>();
+  @override
+  void initState() {
+    if (widget.selectedKey != null || widget.selectedValue != null) {
+      read.init(widget.selectedKey, widget.selectedValue);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    late BottomSheetFilterByGroupProvider read =
-        context.read<BottomSheetFilterByGroupProvider>();
-    late BottomSheetFilterByGroupProvider watch =
-        context.watch<BottomSheetFilterByGroupProvider>();
     return Consumer<BottomSheetFilterByGroupProvider>(
         builder: (context, filtering, child) => Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.w),
@@ -40,7 +59,7 @@ class BottomSheetFilterByGroup<T> extends StatelessWidget {
                         ),
                       )),
                   CustomText(
-                    text: title,
+                    text: widget.title,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   3.h.sh,

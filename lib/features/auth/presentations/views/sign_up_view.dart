@@ -5,6 +5,7 @@ import 'package:workhours/common/helper/validator.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
+import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
@@ -25,23 +26,22 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(100.w, 3.h),
-        child: AppBar(
-          leading: SizedBox(),
+      appBar: CustomAppBar(
+        backButton: false,
+        heightAppBar: 80,
+        backgroundColor: AppColors.scaffoldColor,
+        CustomTitle: Image.asset(
+          Assets.assetsImagesLogo,
+          width: 50.w,
+          height: 10.w,
         ),
+        titleCenter: true,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              Assets.assetsImagesLogo,
-              width: 50.w,
-              height: 10.w,
-            ),
-            4.h.sh,
             Form(
               key: watch.globalKey,
               child: Column(

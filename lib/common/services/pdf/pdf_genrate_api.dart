@@ -10,6 +10,7 @@ import 'package:flutter/material.dart'
     hide Page
     hide CrossAxisAlignment
     hide Center
+    hide Stack
     hide Directionality
     hide TextDirection
     hide SizedBox
@@ -23,9 +24,10 @@ import 'package:flutter/material.dart'
     hide Divider
     hide Theme
     hide ThemeData
+    hide Image
+    hide MemoryImage
     hide EdgeInsets;
 import 'package:flutter/services.dart';
-
 import 'package:pdf/widgets.dart';
 
 import 'package:pdf/pdf.dart';
@@ -139,6 +141,22 @@ class PdfGenerateApi {
                 fontSize: 20,
               ),
             ),
+            Text(
+              S.of(_context).date,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: PdfColor.fromHex("#6A6A6A"),
+                fontSize: 20,
+              ),
+            ),
+            Text(
+              S.of(_context).day,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: PdfColor.fromHex("#6A6A6A"),
+                fontSize: 20,
+              ),
+            ),
           ],
         ),
         SizedBox(height: 10),
@@ -162,6 +180,7 @@ class PdfGenerateApi {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
+          /// group
           Text(
             group,
             textAlign: TextAlign.right,
@@ -171,8 +190,32 @@ class PdfGenerateApi {
               color: PdfColor.fromHex("#6A6A6A"),
             ),
           ),
+
+          /// name
           Text(
             "محمد احمد",
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: PdfColor.fromHex("#6A6A6A"),
+            ),
+          ),
+
+          /// date
+          Text(
+            "1/1/2023",
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: PdfColor.fromHex("#6A6A6A"),
+            ),
+          ),
+
+          /// day
+          Text(
+            "الاحد\Monday",
             textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: 18,

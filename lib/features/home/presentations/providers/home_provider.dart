@@ -4,6 +4,7 @@ import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/features/home/data/model/base_data.dart';
+import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/features/home/presentations/providers/variable_state.dart';
 
@@ -31,6 +32,25 @@ class HomeProvider extends ChangeNotifier {
 
   navToCreateList() {
     _context.pushNamed(RoutesStrings.createList);
+  }
+
+  navToAddNewEmployee() {
+    _context.pushNamed(RoutesStrings.newEmployee);
+  }
+
+  navToEditEmployee(EmployeeModel employee) {
+    _context.pushNamed(
+      RoutesStrings.editEmployee,
+      queryParams: {"employee": employee.toJson()},
+    );
+  }
+
+  navToProfile() {
+    _context.pushReplacementNamed(RoutesStrings.profile);
+  }
+
+  onReorder(int oldIndex, int newIndex) {
+    notifyListeners();
   }
 
   init() async {
