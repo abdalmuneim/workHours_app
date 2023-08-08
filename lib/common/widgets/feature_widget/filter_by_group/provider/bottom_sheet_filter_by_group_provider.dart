@@ -26,4 +26,24 @@ class BottomSheetFilterByGroupProvider extends ChangeNotifier {
     print(data);
     _context.pop(data);
   }
+
+  init(FilteringByGroupEnum? valueEnum, String? valueString) async {
+    if (valueString != null) {
+      await groups.map((key, value) {
+        if (valueString == value) {
+          this._selectedFilterByGroupEnum = key;
+          this._selectedFilterByGroup = value;
+        }
+        return MapEntry(key, value);
+      });
+    } else if (valueEnum != null) {
+      await groups.map((key, value) {
+        if (valueEnum == key) {
+          this._selectedFilterByGroupEnum = key;
+          this._selectedFilterByGroup = value;
+        }
+        return MapEntry(key, value);
+      });
+    } else {}
+  }
 }

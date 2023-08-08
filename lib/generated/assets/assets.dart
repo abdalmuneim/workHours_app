@@ -45,6 +45,10 @@ class Assets {
   /// assets/images/svg/calender-ic.svg
   static const String assetsImagesSvgCalenderIc = "assets/images/svg/calender-ic.svg";
 
+  /// Assets for assetsImagesSvgLogOut
+  /// assets/images/svg/log-out.svg
+  static const String assetsImagesSvgLogOut = "assets/images/svg/log-out.svg";
+
   /// Assets for assetsImagesSvgWhatsappIc
   /// assets/images/svg/whatsapp-ic.svg
   static const String assetsImagesSvgWhatsappIc = "assets/images/svg/whatsapp-ic.svg";

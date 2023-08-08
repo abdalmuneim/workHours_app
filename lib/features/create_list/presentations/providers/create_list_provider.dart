@@ -15,7 +15,10 @@ class CreateListProvider<T> extends ChangeNotifier {
       this._filteringByGroup = value;
   Map<FilteringByGroupEnum, String>? get filteringByGroup => _filteringByGroup;
 
-  GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _globalKey =
+      GlobalKey<FormState>(debugLabel: "create list");
+  GlobalKey<FormState> get globalKey => _globalKey;
+
   String? fromDateTEXT;
   String? toDateTEXT;
   final startFromTEXT = TextEditingController();
@@ -25,8 +28,8 @@ class CreateListProvider<T> extends ChangeNotifier {
     _context.pushNamed(RoutesStrings.listOfEmployees);
   }
 
-  changeFromDateTime() {
-    Utils.displayDatePicker(
+  changeFromDateTime() async {
+    final date = await Utils.displayDatePicker(
       (value) {
         print(value);
         fromDateTEXT = DateFormat().add_yMEd().format(value);
@@ -36,6 +39,7 @@ class CreateListProvider<T> extends ChangeNotifier {
           ? DateFormat().add_yMEd().parse(fromDateTEXT!)
           : null,
     );
+    print(date);
   }
 
   changeToDateTime() {
@@ -45,9 +49,12 @@ class CreateListProvider<T> extends ChangeNotifier {
         toDateTEXT = DateFormat().add_yMEd().format(value);
         notifyListeners();
       },
+      initial: DateFormat().add_yMEd().parse(
+          fromDateTEXT ?? DateFormat().add_yMEd().format(DateTime.now())),
       selected: toDateTEXT != null
           ? DateFormat().add_yMEd().parse(toDateTEXT!)
-          : null,
+          : DateFormat().add_yMEd().parse(
+              fromDateTEXT ?? DateFormat().add_yMEd().format(DateTime.now())),
     );
   }
 

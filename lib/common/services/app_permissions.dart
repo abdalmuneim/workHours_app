@@ -1,10 +1,7 @@
 import 'package:permission_handler/permission_handler.dart';
 
 class AppPermissions {
-  AppPermissions() {
-    askLocalStoragePermission();
-  }
-  static askLocalStoragePermission() async {
+  static Future askLocalStoragePermission() async {
     // You can request multiple permissions at once.
     Map<Permission, PermissionStatus> statuses = await [
       Permission.storage,

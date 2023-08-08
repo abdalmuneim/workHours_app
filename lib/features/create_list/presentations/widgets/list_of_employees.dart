@@ -61,10 +61,12 @@ class ListOfEmployeesWidget extends StatelessWidget {
               CustomText(
                 text: S.of(context).name,
                 color: AppColors.darkGrey,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
               CustomText(
                 text: S.of(context).group,
                 color: AppColors.darkGrey,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
           ),

@@ -7,6 +7,7 @@ import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
+import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/view/bottom_sheet_filter_by_group.dart';
@@ -37,19 +38,7 @@ class _CreateListViewState extends State<CreateListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
-      appBar: PreferredSize(
-        preferredSize: Size(100.w, 50),
-        child: AppBar(
-          backgroundColor: AppColors.white,
-          title: Text(S.of(context).createList),
-          leading: IconButton(
-            icon: SvgPicture.asset(
-              Assets.assetsImagesSvgArrowBackIc,
-            ),
-            onPressed: () => read.back(),
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: S.of(context).createList),
       body: Form(
         key: watch.globalKey,
         child: ListView(
@@ -179,13 +168,13 @@ class _CreateListViewState extends State<CreateListView> {
                 Expanded(
                   child: CustomElevatedButton(
                     color: AppColors.white,
-                    side: BorderSide(color: AppColors.darkGrey),
+                    side: BorderSide(color: AppColors.red),
                     elevation: 0,
                     child: CustomText(
                       text: S.of(context).cancel,
                       fontWeight: FontWeightManger.regular,
                       fontSize: 14.sp,
-                      color: AppColors.darkGrey,
+                      color: AppColors.red,
                     ),
                     onPressed: () => read.back(),
                   ),

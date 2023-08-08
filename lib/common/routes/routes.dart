@@ -1,11 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workhours/features/auth/presentations/views/change_password_view.dart';
+import 'package:workhours/features/auth/presentations/views/forget_password_view.dart';
+import 'package:workhours/features/auth/presentations/views/new_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/sign_in_view.dart';
 import 'package:workhours/features/auth/presentations/views/sign_up_view.dart';
 import 'package:workhours/features/auth/presentations/views/verify_email_view.dart';
 import 'package:workhours/features/create_list/presentations/views/create_list_view.dart';
 import 'package:workhours/features/create_list/presentations/views/list_of_employees_view.dart';
+import 'package:workhours/features/home/data/model/employee_model.dart';
+import 'package:workhours/features/home/presentations/views/edit_employee_view.dart';
 import 'package:workhours/features/home/presentations/views/home_view.dart';
+import 'package:workhours/features/home/presentations/views/new_employee_view.dart';
+import 'package:workhours/features/profile/presentations/views/profile_view.dart';
 import 'package:workhours/features/splash/splash_view.dart';
 part './routes_string.dart';
 
@@ -30,12 +39,16 @@ class Routes {
         },
       ),
 
-      /// otp
+      /// verifyEmail
       GoRoute(
         name: RoutesStrings.verifyEmail,
         path: RoutesStrings.verifyEmail,
         builder: (BuildContext context, GoRouterState state) {
-          return const VerifyEmailView();
+          final String fromScreen = state.queryParams["from"]!;
+          log("----------->${fromScreen}");
+          return VerifyEmailView(
+            fromScreen: fromScreen,
+          );
         },
       ),
 
@@ -57,6 +70,28 @@ class Routes {
         },
       ),
 
+      /// new employee
+      GoRoute(
+        name: RoutesStrings.newEmployee,
+        path: RoutesStrings.newEmployee,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NewEmployeeView();
+        },
+      ),
+
+      /// edit employee
+      GoRoute(
+        name: RoutesStrings.editEmployee,
+        path: RoutesStrings.editEmployee,
+        builder: (BuildContext context, GoRouterState state) {
+          final EmployeeModel employee =
+              EmployeeModel.fromJson(state.queryParams["employee"]!);
+          return EditEmployeeView(
+            employee: employee,
+          );
+        },
+      ),
+
       /// createList
       GoRoute(
         name: RoutesStrings.createList,
@@ -72,6 +107,42 @@ class Routes {
         path: RoutesStrings.listOfEmployees,
         builder: (BuildContext context, GoRouterState state) {
           return const ListOfEmployeesView();
+        },
+      ),
+
+      /// ForgetPasswordView
+      GoRoute(
+        name: RoutesStrings.forgetPassword,
+        path: RoutesStrings.forgetPassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ForgetPasswordView();
+        },
+      ),
+
+      /// newPassword
+      GoRoute(
+        name: RoutesStrings.newPassword,
+        path: RoutesStrings.newPassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NewPasswordView();
+        },
+      ),
+
+      /// profile
+      GoRoute(
+        name: RoutesStrings.profile,
+        path: RoutesStrings.profile,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ProfileView();
+        },
+      ),
+
+      /// changePassword
+      GoRoute(
+        name: RoutesStrings.changePassword,
+        path: RoutesStrings.changePassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ChangePasswordView();
         },
       ),
     ],

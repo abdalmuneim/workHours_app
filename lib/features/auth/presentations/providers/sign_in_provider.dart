@@ -4,7 +4,8 @@ import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 
 class SignInProvider extends ChangeNotifier {
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _globalKey =
+      GlobalKey<FormState>(debugLabel: "sig in");
   GlobalKey<FormState> get globalKey => _globalKey;
   final _context = NavigationService.context;
 
@@ -19,7 +20,7 @@ class SignInProvider extends ChangeNotifier {
       _isLoading = true;
       notifyListeners();
       Future.delayed(Duration(seconds: 2), () {
-        _context.pushNamed(RoutesStrings.verifyEmail);
+        _context.pushReplacementNamed(RoutesStrings.home);
         _isLoading = false;
         notifyListeners();
       });
@@ -27,6 +28,14 @@ class SignInProvider extends ChangeNotifier {
   }
 
   notHaveAccount() {
-    _context.pushNamed(RoutesStrings.signUp);
+    _context.pushNamed(
+      RoutesStrings.signUp,
+    );
+  }
+
+  forgetPassword() {
+    _context.pushReplacementNamed(
+      RoutesStrings.forgetPassword,
+    );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:workhours/common/resources/app_color.dart';
+import 'package:workhours/common/services/app_permissions.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/services/pdf/pdf_genrate_api.dart';
 import 'package:workhours/common/utils/utils.dart';
@@ -18,19 +20,24 @@ class ListOfEmployeesProvider extends ChangeNotifier {
   saveList() async {
     isLoadSave = true;
     notifyListeners();
-    print("----------------------");
+
     try {
-      Future.delayed(
-        Duration(seconds: 2),
-        () async => await PdfGenerateApi.generate(EmployeeModel()).then(
-          (File value) {
-            print(value);
-            isLoadSave = false;
-            notifyListeners();
-            Utils.showSuccess(S.of(_context).pdfFileSavedAtPath(value.path));
-          },
-        ),
-      );
+      await AppPermissions.askLocalStoragePermission().then((value) {
+        Future.delayed(
+          Duration(seconds: 2),
+          () async => await PdfGenerateApi.generate(EmployeeModel()).then(
+            (File value) {
+              print(value);
+              isLoadSave = false;
+              notifyListeners();
+              Utils.showToast(
+                S.of(_context).pdfFileSavedAtPath(""),
+                icon: Icon(Icons.save, color: AppColors.primary),
+              );
+            },
+          ),
+        );
+      });
     } catch (e) {
       print(e);
       isLoadSave = false;
@@ -43,17 +50,22 @@ class ListOfEmployeesProvider extends ChangeNotifier {
     notifyListeners();
     print("----------------------");
     try {
-      Future.delayed(
-        Duration(seconds: 2),
-        () async => await PdfGenerateApi.generate(EmployeeModel())
-            .then((File file) async {
-          await Share.shareFiles([file.path]);
-          Utils.showSuccess(S.of(_context).pdfFileSavedAtPath(file.path));
-        }).then((value) {
-          isLoadShare = false;
-          notifyListeners();
-        }),
-      );
+      await AppPermissions.askLocalStoragePermission().then((value) {
+        Future.delayed(
+          Duration(seconds: 2),
+          () async => await PdfGenerateApi.generate(EmployeeModel())
+              .then((File file) async {
+            await Share.shareFiles([file.path]);
+            Utils.showToast(
+              S.of(_context).pdfFileSavedAtPath(""),
+              icon: Icon(Icons.save, color: AppColors.primary),
+            );
+          }).then((value) {
+            isLoadShare = false;
+            notifyListeners();
+          }),
+        );
+      });
     } catch (e) {
       print(e);
       isLoadShare = false;

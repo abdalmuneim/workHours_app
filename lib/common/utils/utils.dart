@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/services/navigation_services.dart';
@@ -25,6 +26,39 @@ class Utils {
           return body;
         },
       );
+
+  static Future showBottomSheetWithClose(
+      {String? title, required Widget body}) {
+    return showBottomSheet(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.w),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: () => _context.pop(),
+                  icon: Icon(
+                    Icons.close,
+                    color: AppColors.black,
+                  ),
+                )),
+            if (title != null)
+              CustomText(
+                text: title,
+                style: Theme.of(_context).textTheme.labelMedium,
+              ),
+            3.h.sh,
+            body,
+          ],
+        ),
+      ),
+    );
+  }
+
   static showSuccess(String message) => showToast(message);
 
   static showError(String message) =>
@@ -73,16 +107,29 @@ class Utils {
 
   /// toast
   static void showToast(String text,
-          {Color? backgroundColor, Color? textColor, int? duration}) =>
+          {Widget? icon,
+          Color? backgroundColor,
+          Color? textColor,
+          int? duration}) =>
       ScaffoldMessenger.of(_context).showSnackBar(
         SnackBar(
           width: MediaQuery.of(_context).size.width - 50,
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: duration ?? 4),
-          content: CustomText(
-            text: text,
-            color: textColor ?? Colors.white,
-            fontSize: 10.sp,
+          content: Expanded(
+            child: Row(
+              children: [
+                if (icon != null) ...[
+                  icon,
+                  2.w.sw,
+                ],
+                CustomText(
+                  text: text,
+                  color: textColor ?? Colors.white,
+                  fontSize: 10.sp,
+                ),
+              ],
+            ),
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           backgroundColor: backgroundColor ?? AppColors.black.withOpacity(0.7),
@@ -92,18 +139,40 @@ class Utils {
 
   static displayDatePicker(ValueChanged<DateTime> onChange,
       {DateTime? initial, DateTime? selected}) async {
-    var date = await showDatePicker(
+    var date = await showDialog(
       context: _context,
-      initialDate: selected ?? DateTime.now(),
-      firstDate: initial ?? DateTime.now(),
-      lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1),
-      builder: (context, child) => Theme(
+      // initialDate: selected ?? DateTime.now(),
+      // firstDate: initial ?? DateTime.now(),
+      // lastDate: DateTime(DateTime.now().year, DateTime.now().month + 2),
+      builder: (context) => Theme(
         data: Theme.of(context).copyWith(
           colorScheme: ColorScheme.light(
             primary: AppColors.primary,
           ),
         ),
-        child: child!,
+        child: LayoutBuilder(builder: (_, constraints) {
+          final width = constraints.maxWidth;
+          // final height = constraints.maxHeight;
+
+          return Center(
+            child: Material(
+              // ok or cancel buttons arent needed for this case, else you can use AlertDialog for general purpose
+              child: SizedBox(
+                width: width * 0.8, // cant managed being expanded
+                child: CalendarDatePicker(
+                  initialDate: selected ?? DateTime.now(),
+                  firstDate: initial ?? DateTime.now(),
+                  lastDate:
+                      DateTime(DateTime.now().year, DateTime.now().month + 2),
+                  onDateChanged: (DateTime value) {
+                    _context.pop(value);
+                    onChange(value);
+                  },
+                ),
+              ),
+            ),
+          );
+        }),
       ),
     );
 
