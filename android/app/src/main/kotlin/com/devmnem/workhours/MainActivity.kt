@@ -1,4 +1,4 @@
-package com.example.workhours
+package com.devmnem.workhours
 
 import io.flutter.embedding.android.FlutterActivity
 

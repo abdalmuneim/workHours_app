@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور الجديدة"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تاكيد الرقم السري"),
+        "confirmPasswordIsNotCorrect": MessageLookupByLibrary.simpleMessage(
+            "Confirm password is not correct"),
         "continuo": MessageLookupByLibrary.simpleMessage("استمرار"),
         "counterEmployees": m0,
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -138,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pdfFileSavedAtPath": m2,
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
+        "pleaseEnterAUsername":
+            MessageLookupByLibrary.simpleMessage("Please enter a username"),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("اضغط مجددا للخروج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
@@ -159,6 +163,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "startFromNum": MessageLookupByLibrary.simpleMessage("ابدأ من رقم"),
         "successShare":
             MessageLookupByLibrary.simpleMessage("لقد شاركت الملف بنجاح"),
+        "theAccountAlreadyExistsForThatEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "The account already exists for that email."),
+        "thePasswordProvidedIsTooWeak": MessageLookupByLibrary.simpleMessage(
+            "The password provided is too weak."),
         "to": MessageLookupByLibrary.simpleMessage(" الى"),
         "toDate": MessageLookupByLibrary.simpleMessage("الى تاريخ"),
         "unavailable": MessageLookupByLibrary.simpleMessage("الغير متوفر"),
@@ -173,6 +182,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "weSendEmailForVerifyUEmail": m3,
         "welcome": MessageLookupByLibrary.simpleMessage("اهلا"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحبا بعودتك"),
-        "welcomeO": m4
+        "welcomeO": m4,
+        "yourEmailHasBeenVerifiedSuccessful":
+            MessageLookupByLibrary.simpleMessage(
+                "Your Email has been verified Successful.")
       };
 }

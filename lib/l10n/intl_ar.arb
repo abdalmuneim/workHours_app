@@ -125,5 +125,10 @@
   "logOut": "تسجيل الخروج",
   "oldPassword": "كلمة المرور الحالية",
   "date": "التاريخ",
-  "day": "اليوم"
+  "day": "اليوم",
+  "thePasswordProvidedIsTooWeak": "كلمة المرور المقدمة ضعيفة للغاية.",
+  "theAccountAlreadyExistsForThatEmail": "الحساب موجود بالفعل لهذا البريد الإلكتروني.",
+  "confirmPasswordIsNotCorrect": "تأكيد كلمة المرور غير صحيحة",
+  "pleaseEnterAUsername": "الرجاء ادخال اسم المستخدم",
+  "yourEmailHasBeenVerifiedSuccessful": "تم التحقق من بريدك الإلكتروني بنجاح."
 }

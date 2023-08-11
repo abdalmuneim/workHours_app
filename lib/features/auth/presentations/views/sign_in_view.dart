@@ -23,6 +23,11 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView> {
   late SignInProvider read = context.read<SignInProvider>();
   late SignInProvider watch = context.watch<SignInProvider>();
+  @override
+  void initState() {
+    super.initState();
+    read.init();
+  }
 
   @override
   Widget build(BuildContext context) {
