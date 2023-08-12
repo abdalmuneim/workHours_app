@@ -1119,6 +1119,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Password Rest Email Sent.`
+  String get passwordRestEmailSent {
+    return Intl.message(
+      'Password Rest Email Sent.',
+      name: 'passwordRestEmailSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا يوجد موظفين اضف موظف جديد!`
+  String get noEmployeeYet {
+    return Intl.message(
+      'لا يوجد موظفين اضف موظف جديد!',
+      name: 'noEmployeeYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ادخل رقم الهاتف`
+  String get enterPhone {
+    return Intl.message(
+      'ادخل رقم الهاتف',
+      name: 'enterPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل سم المجموعة`
+  String get enterGroupName {
+    return Intl.message(
+      'أدخل سم المجموعة',
+      name: 'enterGroupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تاكد من ادخال الاسم ورقم الهاتف`
+  String get validateNameAndPhone {
+    return Intl.message(
+      'تاكد من ادخال الاسم ورقم الهاتف',
+      name: 'validatNameAndPhone',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

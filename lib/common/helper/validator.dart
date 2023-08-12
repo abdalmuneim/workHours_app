@@ -11,7 +11,8 @@ enum ValidationType {
   email,
   ipAddress,
   password,
-  validationCode
+  validationCode,
+  double,
 }
 
 class AppValidator {
@@ -49,10 +50,6 @@ class AppValidator {
       }
       if (value.length != AppConstants.codeLength) {
         return S.of(context).validateCodeNumber;
-      }
-    } else if (fieldType == ValidationType.name) {
-      if (value.isEmpty) {
-        return S.of(context).validName;
       }
     } else if (fieldType == ValidationType.notEmpty) {
       if (value.trim().isEmpty || value.isEmpty) {

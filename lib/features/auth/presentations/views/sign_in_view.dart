@@ -57,47 +57,51 @@ class _SignInViewState extends State<SignInView> {
             /// form
             Form(
               key: watch.globalKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  CustomText(
-                    text: S.of(context).signIn,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  4.h.sh,
-
-                  /// email
-                  CustomTextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: watch.emailTEXT,
-                    border: true,
-                    hintText: S.of(context).enterEmail,
-                    labelText: S.of(context).email,
-                    validator: (value) => AppValidator.validateFields(
-                        value, ValidationType.email, context),
-                  ),
-                  4.h.sh,
-
-                  /// password
-                  CustomTextFormField(
-                    controller: watch.passwordTEXT,
-                    obscureText: true,
-                    border: true,
-                    hintText: S.of(context).enterPassword,
-                    labelText: S.of(context).password,
-                    validator: (value) => AppValidator.validateFields(
-                        value, ValidationType.password, context),
-                  ),
-
-                  TextButton(
-                    onPressed: () => read.forgetPassword(),
-                    child: Text(
-                      S.of(context).doUForgetPassword,
-                      style: TextStyle(color: AppColors.black),
+              child: AutofillGroup(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CustomText(
+                      text: S.of(context).signIn,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                  ),
-                ],
+                    4.h.sh,
+
+                    /// email
+                    CustomTextFormField(
+                      autofillHints: [AutofillHints.email],
+                      keyboardType: TextInputType.emailAddress,
+                      controller: watch.emailTEXT,
+                      border: true,
+                      hintText: S.of(context).enterEmail,
+                      labelText: S.of(context).email,
+                      validator: (value) => AppValidator.validateFields(
+                          value, ValidationType.email, context),
+                    ),
+                    4.h.sh,
+
+                    /// password
+                    CustomTextFormField(
+                      autofillHints: [AutofillHints.password],
+                      controller: watch.passwordTEXT,
+                      obscureText: true,
+                      border: true,
+                      hintText: S.of(context).enterPassword,
+                      labelText: S.of(context).password,
+                      validator: (value) => AppValidator.validateFields(
+                          value, ValidationType.password, context),
+                    ),
+
+                    TextButton(
+                      onPressed: () => read.forgetPassword(),
+                      child: Text(
+                        S.of(context).doUForgetPassword,
+                        style: TextStyle(color: AppColors.black),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             2.h.sh,

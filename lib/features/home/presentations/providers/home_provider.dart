@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
+import 'package:workhours/features/auth/data/models/user_model.dart';
 import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
@@ -17,6 +20,17 @@ class HomeProvider extends ChangeNotifier {
   set setFilterByGroup(Map<FilteringByGroupEnum, String> value) =>
       this._filteringByGroup = value;
   Map<FilteringByGroupEnum, String>? get filteringByGroup => _filteringByGroup;
+  UserModel? user;
+  List<EmployeeModel> allEmployees = [];
+  List<EmployeeModel> availableEmployees = [];
+  List<EmployeeModel> unavailableEmployees = [];
+
+  _getUser() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final List<String>? u = await preferences.getStringList(KeyStorage.user);
+    user = UserModel(firstName: u![0]);
+    notifyListeners();
+  }
 
   onChangeSelectFilterAvailable(
       FilteringByAvailableEnum filterEnum, String? value) {
@@ -35,7 +49,8 @@ class HomeProvider extends ChangeNotifier {
   }
 
   navToAddNewEmployee() {
-    _context.pushNamed(RoutesStrings.newEmployee);
+    _context.pushNamed(RoutesStrings.newEmployee,
+        queryParams: {"numOfEmp": "${allEmployees.length}"});
   }
 
   navToEditEmployee(EmployeeModel employee) {
@@ -54,6 +69,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   init() async {
+    await _getUser();
     setFilterByGroup =
         await {FilteringByGroupEnum.All: groups.values.toList().first};
   }

@@ -9,7 +9,7 @@ import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
-import 'package:workhours/features/auth/presentations/providers/change_password_provider.dart';
+import 'package:workhours/features/profile/presentations/provider/change_password_provider.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class ChangePasswordView extends StatefulWidget {
@@ -44,7 +44,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   /// old password
                   CustomTextFormField(
                     keyboardType: TextInputType.text,
-                    controller: watch.newPasswordTEXT,
+                    controller: watch.oldPasswordTEXT,
                     border: true,
                     hintText: S.of(context).enterPassword,
                     labelText: S.of(context).oldPassword,
@@ -69,7 +69,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
                   /// confirm new Password
                   CustomTextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     controller: watch.confirmNewPasswordTEXT,
                     border: true,
                     labelText: S.of(context).confirmNewPassword,
@@ -113,7 +113,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                             fontWeight: FontWeightManger.semiBold,
                             fontSize: 14.sp,
                           ),
-                          onPressed: () => read.save(),
+                          onPressed: () => read.changePassword(),
                         ),
                       ),
                     ],
