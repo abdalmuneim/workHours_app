@@ -132,5 +132,10 @@
   "theAccountAlreadyExistsForThatEmail": "The account already exists for that email.",
   "confirmPasswordIsNotCorrect": "Confirm password is not correct",
   "pleaseEnterAUsername": "Please enter a username",
-  "yourEmailHasBeenVerifiedSuccessful": "Your Email has been verified Successful."
+  "yourEmailHasBeenVerifiedSuccessful": "Your Email has been verified Successful.",
+  "passwordRestEmailSent": "Password Rest Email Sent.",
+  "noEmployeeYet": "لا يوجد موظفين اضف موظف جديد!",
+  "enterPhone": "ادخل رقم الهاتف",
+  "enterGroupName": "أدخل سم المجموعة",
+  "validateNameAndPhone": "تاكد من ادخال الاسم ورقم الهاتف"
 }

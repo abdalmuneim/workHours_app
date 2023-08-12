@@ -6,15 +6,19 @@ class EmployeeModel {
   final String? group;
   final String? workingFrom;
   final String? workingTo;
+  final bool? isAvailable;
   final String? vacationFrom;
   final String? vacationsTo;
+  final String? phone;
 
   EmployeeModel({
     this.id,
     this.workingFrom,
     this.workingTo,
+    this.isAvailable,
     this.name,
     this.group,
+    this.phone,
     this.vacationFrom,
     this.vacationsTo,
   });
@@ -24,8 +28,10 @@ class EmployeeModel {
       id: json['id'],
       workingFrom: json['workingFrom'],
       workingTo: json['workingTo'],
+      isAvailable: json['isAvailable'],
       name: json['name'],
       group: json['group'],
+      phone: json['phone'],
       vacationFrom: json['vacationFrom'],
       vacationsTo: json['vacationsTo'],
     );
@@ -36,6 +42,8 @@ class EmployeeModel {
     data['name'] = this.name;
     data['workingFrom'] = this.workingFrom;
     data['workingTo'] = this.workingTo;
+    data['isAvailable'] = this.isAvailable;
+    data['phone'] = this.phone;
     data['name'] = this.name;
     data['group'] = this.group;
     data['vacationFrom'] = this.vacationFrom;

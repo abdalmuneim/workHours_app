@@ -16,11 +16,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = AppColors.white,
     this.backButton = true,
     this.onPressBack,
+    this.action,
   });
   final String? title;
   final double? heightAppBar;
   final String? fromScreen;
   final Widget? CustomTitle;
+  final List<Widget>? action;
   final bool titleCenter;
   final Color? backgroundColor;
   final bool backButton;
@@ -30,7 +32,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: titleCenter,
       backgroundColor: backgroundColor,
-      title: CustomTitle ?? Text(title ?? ""),
+      title: CustomTitle ??
+          Text(
+            title ?? "",
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+      actions: action,
       leading: backButton
           ? IconButton(
               icon: SvgPicture.asset(
@@ -38,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               onPressed: onPressBack ?? () => NavigationService.context.pop(),
             )
-          : SizedBox(),
+          : null,
     );
   }
 

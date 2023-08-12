@@ -84,7 +84,7 @@ class Utils {
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: Theme.of(_context).textTheme.headlineLarge,
+                style: Theme.of(_context).textTheme.labelSmall,
               ),
               20.sh,
               if (action != null) ...[

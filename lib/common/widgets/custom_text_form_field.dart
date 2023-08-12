@@ -42,6 +42,7 @@ class CustomTextFormField extends StatefulWidget {
     this.focusNode,
     this.fillColor,
     this.onTap,
+    this.autofillHints,
     this.isLabel = true,
     this.borderRadius,
   }) : super(key: key);
@@ -71,6 +72,7 @@ class CustomTextFormField extends StatefulWidget {
   final Function(String)? onFieldSubmitted;
   final FocusNode? focusNode;
   final void Function()? onTap;
+  final Iterable<String>? autofillHints;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -96,6 +98,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           width: widget.width,
           height: widget.height,
           child: TextFormField(
+            autofillHints: widget.autofillHints,
             onTap: widget.onTap ??
                 () {
                   setState(() {

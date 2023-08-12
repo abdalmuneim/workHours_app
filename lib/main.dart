@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide Notification;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:workhours/common/app_constant/providers.dart';
+import 'package:workhours/common/helper/providers.dart';
 import 'package:workhours/common/resources/theme_manager.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/firebase_options.dart';

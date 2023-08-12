@@ -22,6 +22,11 @@ class _SplashViewState extends State<SplashView> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,

@@ -5,6 +5,7 @@ import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
+import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/view/bottom_sheet_filter_by_group.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
@@ -41,7 +42,31 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
-      appBar: PreferredSize(preferredSize: Size(100.w, 1.h), child: AppBar()),
+      appBar: CustomAppBar(
+        heightAppBar: 70,
+        title: S.of(context).welcomeO(watch.user?.firstName ?? ""),
+        backButton: false,
+        action: [
+          GestureDetector(
+            onTap: () => read.navToProfile(),
+            child: Card(
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: AppColors.lightGrey),
+                  borderRadius: BorderRadius.circular(15)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.person_2_outlined,
+                  color: AppColors.primary,
+                  size: 6.w,
+                ),
+              ),
+            ),
+          ),
+          2.w.sw,
+        ],
+      ),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -51,35 +76,6 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                /// top
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      S.of(context).welcomeO("محمد"),
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                    GestureDetector(
-                      onTap: () => read.navToProfile(),
-                      child: Card(
-                        elevation: 1,
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(color: AppColors.lightGrey),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.person_2_outlined,
-                            color: AppColors.primary,
-                            size: 6.w,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                4.h.sh,
-
                 /// add new employee
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,7 +111,10 @@ class _HomeViewState extends State<HomeView> {
 
                 /// all, available and not available employees
                 CustomText(
-                  text: S.of(context).counterEmployees(300, 200, 100),
+                  text: S.of(context).counterEmployees(
+                      watch.allEmployees.length,
+                      watch.availableEmployees.length,
+                      watch.unavailableEmployees.length),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 2.h.sh,
@@ -267,165 +266,196 @@ class _HomeViewState extends State<HomeView> {
 
                 /// list of employees
                 Expanded(
-                  child: ReorderableListView.builder(
-                    onReorder: read.onReorder,
-                    itemCount: 300,
-                    itemBuilder: (context, index) {
-                      final employee = EmployeeModel(
-                        name: "محمد احمد",
-                        group: "مجموعة أ",
-                      );
-                      return Card(
-                        key: ValueKey(index),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              onPressed: null,
-                              icon: Icon(
-                                Icons.menu,
-                                color: AppColors.black,
+                  child: watch.allEmployees.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.contact_emergency_outlined,
+                                color: AppColors.veryLightGrey,
+                                size: 10.h,
                               ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                1.h.sh,
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    /// employee id
-                                    CircleAvatar(
-                                      radius: 3.w,
-                                      backgroundColor: AppColors.primary,
-                                      child: CustomText(
-                                        textAlign: TextAlign.center,
-                                        text: (index + 1).toString(),
-                                        color: AppColors.white,
-                                      ),
+                              3.h.sh,
+                              CustomText(
+                                text: S.of(context).noEmployeeYet,
+                                color: AppColors.veryLightGrey,
+                              ),
+                            ],
+                          ),
+                        )
+                      : ReorderableListView.builder(
+                          onReorder: read.onReorder,
+                          itemCount: 0,
+                          itemBuilder: (context, index) {
+                            final employee = EmployeeModel(
+                              name: "محمد احمد",
+                              group: "مجموعة أ",
+                            );
+                            return Card(
+                              key: ValueKey(index),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  IconButton(
+                                    onPressed: null,
+                                    icon: Icon(
+                                      Icons.menu,
+                                      color: AppColors.black,
                                     ),
-                                    2.w.sw,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      1.h.sh,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          /// employee id
+                                          CircleAvatar(
+                                            radius: 3.w,
+                                            backgroundColor: AppColors.primary,
+                                            child: CustomText(
+                                              textAlign: TextAlign.center,
+                                              text: (index + 1).toString(),
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                          2.w.sw,
 
-                                    /// employee data
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 70.w,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                          /// employee data
+                                          Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              /// employee name
-                                              Row(
-                                                children: [
-                                                  CustomText(
-                                                    text: "محمد احمد",
-                                                    fontWeight:
-                                                        FontWeightManger.medium,
-                                                    fontSize: 14.sp,
-                                                  ),
-                                                  3.w.sw,
+                                              Container(
+                                                width: 70.w,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    /// employee name
+                                                    Row(
+                                                      children: [
+                                                        CustomText(
+                                                          text: "محمد احمد",
+                                                          fontWeight:
+                                                              FontWeightManger
+                                                                  .medium,
+                                                          fontSize: 14.sp,
+                                                        ),
+                                                        3.w.sw,
 
-                                                  /// employee state
-                                                  Icon(
-                                                    Icons.circle,
-                                                    color: index >= 2
-                                                        ? AppColors.unActive
-                                                        : AppColors.active,
-                                                    size: 12,
-                                                  ),
-                                                  .5.w.sw,
-                                                  CustomText(
-                                                    text: index >= 2
-                                                        ? S
-                                                            .of(context)
-                                                            .unavailable_text
-                                                        : S
-                                                            .of(context)
-                                                            .available_text,
-                                                    color: index >= 2
-                                                        ? AppColors.unActive
-                                                        : AppColors.active,
-                                                    fontWeight: FontWeightManger
-                                                        .regular,
-                                                  ),
-                                                ],
+                                                        /// employee state
+                                                        Icon(
+                                                          Icons.circle,
+                                                          color: index >= 2
+                                                              ? AppColors
+                                                                  .unActive
+                                                              : AppColors
+                                                                  .active,
+                                                          size: 12,
+                                                        ),
+                                                        .5.w.sw,
+                                                        CustomText(
+                                                          text: index >= 2
+                                                              ? S
+                                                                  .of(context)
+                                                                  .unavailable_text
+                                                              : S
+                                                                  .of(context)
+                                                                  .available_text,
+                                                          color: index >= 2
+                                                              ? AppColors
+                                                                  .unActive
+                                                              : AppColors
+                                                                  .active,
+                                                          fontWeight:
+                                                              FontWeightManger
+                                                                  .regular,
+                                                        ),
+                                                      ],
+                                                    ),
+
+                                                    /// edit employee
+                                                    IconButton(
+                                                      onPressed: () => read
+                                                          .navToEditEmployee(
+                                                              employee),
+                                                      icon: Icon(
+                                                        Icons.edit,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
+                                              1.h.sh,
 
-                                              /// edit employee
-                                              IconButton(
-                                                onPressed: () =>
-                                                    read.navToEditEmployee(
-                                                        employee),
-                                                icon: Icon(
-                                                  Icons.edit,
+                                              /// employee group
+                                              CustomText(
+                                                text: S.of(context).groupA,
+                                                color: AppColors.darkGrey,
+                                                fontSize: 10.sp,
+                                              ),
+                                              1.h.sh,
+
+                                              /// employee vac
+                                              Container(
+                                                height: 30,
+                                                width: 70.w,
+                                                child: RichText(
+                                                  maxLines: 2,
+                                                  text: TextSpan(
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall
+                                                        ?.copyWith(
+                                                          fontSize: 10.sp,
+                                                        ),
+                                                    children: [
+                                                      TextSpan(
+                                                        text: S
+                                                            .of(context)
+                                                            .vacations,
+                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                            "${S.of(context).from} ",
+                                                      ),
+                                                      TextSpan(
+                                                        text: "الاحد 1/9/2023",
+                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                            " ${S.of(context).to} ",
+                                                      ),
+                                                      TextSpan(
+                                                        text: "الخميس 4/9/2023",
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        1.h.sh,
-
-                                        /// employee group
-                                        CustomText(
-                                          text: S.of(context).groupA,
-                                          color: AppColors.darkGrey,
-                                          fontSize: 10.sp,
-                                        ),
-                                        1.h.sh,
-
-                                        /// employee vac
-                                        Container(
-                                          height: 30,
-                                          width: 70.w,
-                                          child: RichText(
-                                            maxLines: 2,
-                                            text: TextSpan(
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.copyWith(
-                                                    fontSize: 10.sp,
-                                                  ),
-                                              children: [
-                                                TextSpan(
-                                                  text: S.of(context).vacations,
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                      "${S.of(context).from} ",
-                                                ),
-                                                TextSpan(
-                                                  text: "الاحد 1/9/2023",
-                                                ),
-                                                TextSpan(
-                                                  text: " ${S.of(context).to} ",
-                                                ),
-                                                TextSpan(
-                                                  text: "الخميس 4/9/2023",
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                1.h.sh,
-                              ],
-                            ),
-                          ],
+                                        ],
+                                      ),
+                                      1.h.sh,
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                 ),
               ],
             ),

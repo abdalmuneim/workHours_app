@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
+import 'package:workhours/common/utils/utils.dart';
+import 'package:workhours/generated/l10n.dart';
 
 class ForgetPasswordProvider extends ChangeNotifier {
   BuildContext _context = NavigationService.context;
@@ -11,12 +14,23 @@ class ForgetPasswordProvider extends ChangeNotifier {
 
   TextEditingController emailTEXT = TextEditingController();
 
-  nextButton() {
+  nextButton() async {
     if (_globalKey.currentState!.validate()) {
-      _context.pushReplacementNamed(
-        RoutesStrings.verifyEmail,
-        queryParams: {"from": RoutesStrings.forgetPassword},
-      );
+      isLoading = true;
+      notifyListeners();
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailTEXT.text.trim())
+          .then((value) {
+        isLoading = true;
+        notifyListeners();
+        Utils.showSuccess(S.of(_context).passwordRestEmailSent);
+        _context.pushReplacementNamed(
+          RoutesStrings.verifyEmail,
+          queryParams: {"from": RoutesStrings.forgetPassword},
+        );
+      }).catchError((error) {
+        print("error: ${error}");
+      });
     }
   }
 

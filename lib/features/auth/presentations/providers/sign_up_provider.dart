@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
-import 'package:workhours/features/auth/data/models/user.dart';
+import 'package:workhours/features/auth/data/models/user_model.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class SignUpProvider extends ChangeNotifier {
@@ -41,7 +42,9 @@ class SignUpProvider extends ChangeNotifier {
       try {
         //Create a new email and password in firebase
         final fi = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailTEXT.text.trim(), password: passwordTEXT.text.trim());
+          email: emailTEXT.text.trim(),
+          password: passwordTEXT.text.trim(),
+        );
         uid = await fi.user?.uid ?? "";
       } on FirebaseAuthException catch (e) {
         _isLoading = false;
@@ -74,7 +77,8 @@ class SignUpProvider extends ChangeNotifier {
               .set(UserModel(
                       firstName: firstNameTEXT.text,
                       lastName: lastNAmeTEXT.text,
-                      email: emailTEXT.text)
+                      email: emailTEXT.text,
+                      isVerified: false)
                   .toJson())
               .then((value) => print("User Added"))
               .catchError((error) => print("Failed to add user: $error"));
@@ -82,11 +86,15 @@ class SignUpProvider extends ChangeNotifier {
           //Add shared prefs for user
           SharedPreferences preferences = await SharedPreferences.getInstance();
           preferences.setStringList(
-            "User",
-            [firstNameTEXT.text, lastNAmeTEXT.text, emailTEXT.text],
+            KeyStorage.user,
+            [
+              firstNameTEXT.text,
+              lastNAmeTEXT.text,
+              emailTEXT.text,
+            ],
           );
           FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
-          flutterSecureStorage.write(key: "uid", value: uid);
+          flutterSecureStorage.write(key: KeyStorage.userUID, value: uid);
           _isLoading = false;
           notifyListeners();
           if (FirebaseAuth.instance.currentUser != null) {
