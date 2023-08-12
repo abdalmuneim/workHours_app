@@ -110,10 +110,9 @@ class _SignUpViewState extends State<SignUpView> {
 
                   3.h.sh,
 
-                  /// confirm Passwor
-
+                  /// confirm Password
                   CustomTextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     controller: watch.confirmPasswordTEXT,
                     border: true,
                     hintText: S.of(context).enterPassword,

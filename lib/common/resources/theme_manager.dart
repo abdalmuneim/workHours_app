@@ -41,7 +41,7 @@ ThemeData get applicationTheme => ThemeData(
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark,
-          statusBarColor: AppColors.scaffoldColor2,
+          statusBarColor: Colors.transparent,
         ),
         backgroundColor: AppColors.scaffoldColor,
         elevation: 0,

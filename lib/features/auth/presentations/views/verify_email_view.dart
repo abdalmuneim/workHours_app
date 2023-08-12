@@ -28,6 +28,12 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   }
 
   @override
+  void dispose() {
+    read.disposeSc();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
@@ -35,6 +41,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         appBar: CustomAppBar(
           heightAppBar: 80,
           backgroundColor: AppColors.scaffoldColor,
+          onPressBack: () => read.back(widget.fromScreen),
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -73,7 +80,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => read.resendVerify(widget.fromScreen),
                 child: Text(
                   S.of(context).resentLink,
                   style: TextStyle(

@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workhours/common/routes/routes.dart';
@@ -8,16 +7,17 @@ import 'package:workhours/common/services/network_services.dart';
 
 class SplashProvider extends ChangeNotifier {
   final NetworkInfo _networkInfo;
-
+  final _firebase = FirebaseAuth.instance.currentUser;
   SplashProvider(this._networkInfo);
-  final context = NavigationService.context;
+  final _context = NavigationService.context;
 
-  Future<void> startTimer() async {
+  init() async {
     _networkInfo.initializeNetworkStream();
-    Timer(const Duration(seconds: 2), () async => await _navigate());
-  }
-
-  _navigate() async {
-    context.pushReplacementNamed(RoutesStrings.signIn);
+    Future.delayed(
+      Duration(seconds: 2),
+      () {
+        _context.pushReplacementNamed(RoutesStrings.signIn);
+      },
+    );
   }
 }

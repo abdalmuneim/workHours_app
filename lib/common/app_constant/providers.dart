@@ -23,7 +23,7 @@ class Providers {
     ChangeNotifierProvider(create: (_) => SplashProvider(sl())),
 
     /// signIn Provider
-    ChangeNotifierProvider(create: (_) => SignInProvider()),
+    ChangeNotifierProvider(create: (_) => SignInProvider(sl())),
 
     /// SignUpProvider
     ChangeNotifierProvider(create: (_) => SignUpProvider()),
