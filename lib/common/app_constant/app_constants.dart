@@ -15,7 +15,7 @@ class AppConstants {
   static int timeOut = 120;
   static String countryCode = "+966"; // TODO:change to +966
 
-  static int phoneLength = 9; // TODO: change to 9
+  static int phoneLength = 10; // TODO: change to 9
   static int codeLength = 6;
 }
 

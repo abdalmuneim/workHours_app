@@ -130,5 +130,10 @@
   "theAccountAlreadyExistsForThatEmail": "الحساب موجود بالفعل لهذا البريد الإلكتروني.",
   "confirmPasswordIsNotCorrect": "تأكيد كلمة المرور غير صحيحة",
   "pleaseEnterAUsername": "الرجاء ادخال اسم المستخدم",
-  "yourEmailHasBeenVerifiedSuccessful": "تم التحقق من بريدك الإلكتروني بنجاح."
+  "yourEmailHasBeenVerifiedSuccessful": "تم التحقق من بريدك الإلكتروني بنجاح.",
+  "passwordRestEmailSent": "تم ارسال بريد أعاده ضبط",
+  "noEmployeeYet": "لا يوجد موظفين اضف موظف جديد!",
+  "enterPhone": "ادخل رقم الهاتف",
+  "enterGroupName": "أدخل سم المجموعة",
+  "validateNameAndPhone": "تاكد من ادخال الاسم ورقم الهاتف"
 }

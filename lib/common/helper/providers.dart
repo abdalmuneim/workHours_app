@@ -11,7 +11,7 @@ import 'package:workhours/features/create_list/presentations/providers/list_of_e
 import 'package:workhours/features/home/presentations/providers/edit_employee_provider.dart';
 import 'package:workhours/features/home/presentations/providers/home_provider.dart';
 import 'package:workhours/features/home/presentations/providers/new_employee_provider.dart';
-import 'package:workhours/features/auth/presentations/providers/change_password_provider.dart';
+import 'package:workhours/features/profile/presentations/provider/change_password_provider.dart';
 import 'package:workhours/features/profile/presentations/provider/profile_provider.dart';
 import 'package:workhours/features/splash/splash_provider.dart';
 import 'package:workhours/injections.dart';

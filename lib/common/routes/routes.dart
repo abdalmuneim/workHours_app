@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workhours/features/auth/presentations/views/change_password_view.dart';
+import 'package:workhours/features/profile/presentations/views/change_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/forget_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/new_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/sign_in_view.dart';
@@ -75,7 +75,10 @@ class Routes {
         name: RoutesStrings.newEmployee,
         path: RoutesStrings.newEmployee,
         builder: (BuildContext context, GoRouterState state) {
-          return const NewEmployeeView();
+          int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
+          return NewEmployeeView(
+            numOfEmp: numOfEmp,
+          );
         },
       ),
 

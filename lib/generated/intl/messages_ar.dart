@@ -82,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل البريد الالكتروني"),
         "enterFirstName":
             MessageLookupByLibrary.simpleMessage("ادخل الاسم الاول"),
+        "enterGroupName":
+            MessageLookupByLibrary.simpleMessage("أدخل سم المجموعة"),
         "enterLastName":
             MessageLookupByLibrary.simpleMessage("اخل الاسم الاخير"),
         "enterName": MessageLookupByLibrary.simpleMessage("ادخل الاسم"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل الرقم (اختياري)"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("ادخل كلمة المرور"),
+        "enterPhone": MessageLookupByLibrary.simpleMessage("ادخل رقم الهاتف"),
         "enterValidateEmail": MessageLookupByLibrary.simpleMessage(
             "برجاء إدخال بريد إلكتروني صحيح"),
         "enterValidateName":
@@ -122,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "noEmployeeYet": MessageLookupByLibrary.simpleMessage(
+            "لا يوجد موظفين اضف موظف جديد!"),
         "noInternetConnection": MessageLookupByLibrary.simpleMessage(
             "لا يوجد اتصال بالانترنت تحقق من تفعيله"),
         "notHaveAccount":
@@ -132,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "optional": MessageLookupByLibrary.simpleMessage("(اختياري)"),
         "pDFGenerated": MessageLookupByLibrary.simpleMessage("إنشاء ملف PDF"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "passwordRestEmailSent":
+            MessageLookupByLibrary.simpleMessage("تم ارسال بريد أعاده ضبط"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمه المرور غير مطابقه"),
         "pdfFileSavedAtPath": m2,
@@ -166,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unavailable": MessageLookupByLibrary.simpleMessage("الغير متوفر"),
         "unavailable_text": MessageLookupByLibrary.simpleMessage("غير متوفر"),
         "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
+        "validateNameAndPhone": MessageLookupByLibrary.simpleMessage(
+            "تاكد من ادخال الاسم ورقم الهاتف"),
         "verification": MessageLookupByLibrary.simpleMessage("تحقق"),
         "verificationCode": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "weSendEmailForVerifyUEmail": m3,
