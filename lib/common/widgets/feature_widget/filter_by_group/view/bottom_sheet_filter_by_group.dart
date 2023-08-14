@@ -5,19 +5,15 @@ import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/provider/bottom_sheet_filter_by_group_provider.dart';
-import 'package:workhours/features/home/data/model/base_data.dart';
-import 'package:workhours/features/home/data/model/enums.dart';
 
 class BottomSheetFilterByGroup<T> extends StatefulWidget {
   const BottomSheetFilterByGroup({
     super.key,
     required this.title,
-    this.selectedKey,
     this.selectedValue,
   });
 
   final String title;
-  final FilteringByGroupEnum? selectedKey;
   final String? selectedValue;
 
   @override
@@ -33,9 +29,11 @@ class _BottomSheetFilterByGroupState<T>
       context.watch<BottomSheetFilterByGroupProvider>();
   @override
   void initState() {
-    if (widget.selectedKey != null || widget.selectedValue != null) {
-      read.init(widget.selectedKey, widget.selectedValue);
+    if (widget.selectedValue != null) {
+      read.init(initVal: widget.selectedValue);
     }
+    read.init();
+
     super.initState();
   }
 
@@ -64,16 +62,13 @@ class _BottomSheetFilterByGroupState<T>
                   ),
                   3.h.sh,
                   ListView.builder(
-                    itemCount: groups.length,
+                    itemCount: watch.groups.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      final List<FilteringByGroupEnum> keys =
-                          groups.keys.toList();
-                      final String? val = groups[keys[index]];
-                      final FilteringByGroupEnum key = keys[index];
+                      final String? val = watch.groups[index];
 
                       return InkWell(
-                        onTap: () => read.setByGroupEnum(key, val ?? ""),
+                        onTap: () => read.setByGroupEnum(val ?? ""),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Row(

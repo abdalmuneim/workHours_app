@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
-import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 
 class CreateListProvider<T> extends ChangeNotifier {
@@ -59,7 +58,7 @@ class CreateListProvider<T> extends ChangeNotifier {
   }
 
   init() {
-    setFilterByGroup = {FilteringByGroupEnum.All: groups.values.toList().first};
+    // setFilterByGroup = {FilteringByGroupEnum.All: groups.values.toList().first};
   }
 
   back() {

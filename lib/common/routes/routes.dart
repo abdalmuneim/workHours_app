@@ -76,6 +76,7 @@ class Routes {
         path: RoutesStrings.newEmployee,
         builder: (BuildContext context, GoRouterState state) {
           int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
+          log(numOfEmp.toString());
           return NewEmployeeView(
             numOfEmp: numOfEmp,
           );

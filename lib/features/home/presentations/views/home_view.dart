@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -14,6 +15,8 @@ import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/features/home/presentations/providers/home_provider.dart';
+import 'package:workhours/features/home/presentations/views/widgets/impty_employee.dart';
+import 'package:workhours/features/home/presentations/views/widgets/list_of_employees.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class HomeView extends StatefulWidget {
@@ -76,7 +79,6 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                /// add new employee
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -84,6 +86,8 @@ class _HomeViewState extends State<HomeView> {
                       text: S.of(context).menuOfEmployees,
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
+
+                    /// add new employee
                     InkWell(
                       onTap: () => read.navToAddNewEmployee(),
                       borderRadius: BorderRadius.circular(50),
@@ -265,228 +269,61 @@ class _HomeViewState extends State<HomeView> {
                 2.w.sh,
 
                 /// list of employees
-                Expanded(
-                  child: watch.allEmployees.isEmpty
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.contact_emergency_outlined,
-                                color: AppColors.veryLightGrey,
-                                size: 10.h,
-                              ),
-                              3.h.sh,
-                              CustomText(
-                                text: S.of(context).noEmployeeYet,
-                                color: AppColors.veryLightGrey,
-                              ),
-                            ],
-                          ),
-                        )
-                      : ReorderableListView.builder(
-                          onReorder: read.onReorder,
-                          itemCount: 0,
-                          itemBuilder: (context, index) {
-                            final employee = EmployeeModel(
-                              name: "محمد احمد",
-                              group: "مجموعة أ",
-                            );
-                            return Card(
-                              key: ValueKey(index),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  IconButton(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      Icons.menu,
-                                      color: AppColors.black,
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      1.h.sh,
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          /// employee id
-                                          CircleAvatar(
-                                            radius: 3.w,
-                                            backgroundColor: AppColors.primary,
-                                            child: CustomText(
-                                              textAlign: TextAlign.center,
-                                              text: (index + 1).toString(),
-                                              color: AppColors.white,
-                                            ),
-                                          ),
-                                          2.w.sw,
-
-                                          /// employee data
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: 70.w,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    /// employee name
-                                                    Row(
-                                                      children: [
-                                                        CustomText(
-                                                          text: "محمد احمد",
-                                                          fontWeight:
-                                                              FontWeightManger
-                                                                  .medium,
-                                                          fontSize: 14.sp,
-                                                        ),
-                                                        3.w.sw,
-
-                                                        /// employee state
-                                                        Icon(
-                                                          Icons.circle,
-                                                          color: index >= 2
-                                                              ? AppColors
-                                                                  .unActive
-                                                              : AppColors
-                                                                  .active,
-                                                          size: 12,
-                                                        ),
-                                                        .5.w.sw,
-                                                        CustomText(
-                                                          text: index >= 2
-                                                              ? S
-                                                                  .of(context)
-                                                                  .unavailable_text
-                                                              : S
-                                                                  .of(context)
-                                                                  .available_text,
-                                                          color: index >= 2
-                                                              ? AppColors
-                                                                  .unActive
-                                                              : AppColors
-                                                                  .active,
-                                                          fontWeight:
-                                                              FontWeightManger
-                                                                  .regular,
-                                                        ),
-                                                      ],
-                                                    ),
-
-                                                    /// edit employee
-                                                    IconButton(
-                                                      onPressed: () => read
-                                                          .navToEditEmployee(
-                                                              employee),
-                                                      icon: Icon(
-                                                        Icons.edit,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              1.h.sh,
-
-                                              /// employee group
-                                              CustomText(
-                                                text: S.of(context).groupA,
-                                                color: AppColors.darkGrey,
-                                                fontSize: 10.sp,
-                                              ),
-                                              1.h.sh,
-
-                                              /// employee vac
-                                              Container(
-                                                height: 30,
-                                                width: 70.w,
-                                                child: RichText(
-                                                  maxLines: 2,
-                                                  text: TextSpan(
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall
-                                                        ?.copyWith(
-                                                          fontSize: 10.sp,
-                                                        ),
-                                                    children: [
-                                                      TextSpan(
-                                                        text: S
-                                                            .of(context)
-                                                            .vacations,
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            "${S.of(context).from} ",
-                                                      ),
-                                                      TextSpan(
-                                                        text: "الاحد 1/9/2023",
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            " ${S.of(context).to} ",
-                                                      ),
-                                                      TextSpan(
-                                                        text: "الخميس 4/9/2023",
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      1.h.sh,
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                ),
+                StreamBuilder(
+                    stream: read.getAllEmployees(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.hasData) {
+                        List<EmployeeModel> data = [];
+                        for (var e in snapshot.data!.docs) {
+                          data.add(EmployeeModel.fromMap(e.data()));
+                        }
+                        if (data.isEmpty) {
+                          return EmptyListEmployee(
+                            onPress: () => read.navToAddNewEmployee(),
+                          );
+                        }
+                        return Expanded(
+                            child: ListOfEmployees(employees: data));
+                      }
+                      return Center(child: CircularProgressIndicator());
+                    }),
               ],
             ),
           ),
 
           /// create list button
-          Container(
-            width: 100.w,
-            height: 90,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.lightGrey,
-                  offset: Offset(
-                    0,
-                    1,
-                  ),
-                ),
-              ],
-            ),
-            padding: EdgeInsets.all(20),
-            child: CustomElevatedButton(
-              child: CustomText(
-                text: S.of(context).createList,
-                fontWeight: FontWeightManger.semiBold,
-                fontSize: 14.sp,
-              ),
-              onPressed: () => read.navToCreateList(),
-            ),
-          )
+
+          Consumer<HomeProvider>(
+            builder: (context, homePro, _) => homePro.allEmployees.isNotEmpty
+                ? Container(
+                    width: 100.w,
+                    height: 90,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.lightGrey,
+                          offset: Offset(
+                            0,
+                            1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(20),
+                    child: CustomElevatedButton(
+                      child: CustomText(
+                        text: S.of(context).createList,
+                        fontWeight: FontWeightManger.semiBold,
+                        fontSize: 14.sp,
+                      ),
+                      onPressed: () => read.navToCreateList(),
+                    ),
+                  )
+                : SizedBox(),
+          ),
         ],
       ),
     );

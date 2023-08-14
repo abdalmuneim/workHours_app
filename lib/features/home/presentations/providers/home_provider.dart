@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
+import 'package:workhours/common/widgets/feature_widget/filter_by_group/provider/bottom_sheet_filter_by_group_provider.dart';
 import 'package:workhours/features/auth/data/models/user_model.dart';
-import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/features/home/presentations/providers/variable_state.dart';
@@ -15,15 +17,31 @@ class HomeProvider extends ChangeNotifier {
   HomeVariableState state = HomeVariableState();
 
   BuildContext _context = NavigationService.context;
+  FirebaseFirestore _firebase = FirebaseFirestore.instance;
 
-  Map<FilteringByGroupEnum, String>? _filteringByGroup;
-  set setFilterByGroup(Map<FilteringByGroupEnum, String> value) =>
-      this._filteringByGroup = value;
-  Map<FilteringByGroupEnum, String>? get filteringByGroup => _filteringByGroup;
+  String? _filteringByGroup;
+  set setFilterByGroup(String value) => this._filteringByGroup = value;
+  String? get filteringByGroup => _filteringByGroup;
   UserModel? user;
   List<EmployeeModel> allEmployees = [];
   List<EmployeeModel> availableEmployees = [];
   List<EmployeeModel> unavailableEmployees = [];
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllEmployees() {
+    final Stream<QuerySnapshot<Map<String, dynamic>>> data =
+        _firebase.collection(Collections.employees).snapshots();
+    data.forEach((e) {
+      for (var data in e.docs) {
+        allEmployees.add(
+          EmployeeModel.fromMap(
+            data.data(),
+          ),
+        );
+      }
+      notifyListeners();
+    });
+    return data;
+  }
 
   _getUser() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -70,7 +88,13 @@ class HomeProvider extends ChangeNotifier {
 
   init() async {
     await _getUser();
-    setFilterByGroup =
-        await {FilteringByGroupEnum.All: groups.values.toList().first};
+    await getAllEmployees();
+    await Provider.of<BottomSheetFilterByGroupProvider>(_context, listen: false)
+        .getGroups();
+    setFilterByGroup = await Provider.of<BottomSheetFilterByGroupProvider>(
+            _context,
+            listen: false)
+        .groups
+        .first;
   }
 }

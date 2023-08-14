@@ -1164,7 +1164,27 @@ class S {
   String get validateNameAndPhone {
     return Intl.message(
       'تاكد من ادخال الاسم ورقم الهاتف',
-      name: 'validatNameAndPhone',
+      name: 'validateNameAndPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `القائمة فارغة`
+  String get emptyList {
+    return Intl.message(
+      'القائمة فارغة',
+      name: 'emptyList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `برجاء اضافة موظفين`
+  String get plzAddEmployee {
+    return Intl.message(
+      'برجاء اضافة موظفين',
+      name: 'plzAddEmployee',
       desc: '',
       args: [],
     );

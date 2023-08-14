@@ -39,6 +39,7 @@ class EmployeeModel {
 
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.name;
     data['workingFrom'] = this.workingFrom;
     data['workingTo'] = this.workingTo;

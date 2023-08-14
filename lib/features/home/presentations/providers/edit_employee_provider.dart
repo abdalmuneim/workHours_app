@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/utils.dart';
-import 'package:workhours/features/home/data/model/base_data.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 
@@ -71,16 +70,16 @@ class EditEmployeeProvider extends ChangeNotifier {
     vacationFromTEXT = employee.vacationFrom;
     vacationsToTEXT = employee.vacationsTo;
 
-    await groups.map(
-      (key, value) {
-        if (value == employee.group) {
-          this._filteringByGroup = {key: value};
-          groupTEXT = value;
-          return MapEntry(key, value);
-        }
-        return MapEntry(key, value);
-      },
-    );
+    // await groups.map(
+    //   (key, value) {
+    //     if (value == employee.group) {
+    //       this._filteringByGroup = {key: value};
+    //       groupTEXT = value;
+    //       return MapEntry(key, value);
+    //     }
+    //     return MapEntry(key, value);
+    //   },
+    // );
   }
 
   back() {

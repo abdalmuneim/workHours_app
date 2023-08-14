@@ -135,5 +135,7 @@
   "noEmployeeYet": "لا يوجد موظفين اضف موظف جديد!",
   "enterPhone": "ادخل رقم الهاتف",
   "enterGroupName": "أدخل سم المجموعة",
-  "validateNameAndPhone": "تاكد من ادخال الاسم ورقم الهاتف"
+  "validateNameAndPhone": "تاكد من ادخال الاسم ورقم الهاتف",
+  "emptyList": "القائمة فارغة",
+  "plzAddEmployee": "برجاء اضافة موظفين"
 }

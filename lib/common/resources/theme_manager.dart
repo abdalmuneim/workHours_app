@@ -117,7 +117,7 @@ ThemeData get applicationTheme => ThemeData(
         ),
         labelLarge: TextStyle(
           fontFamily: FontManager.fontFamily,
-          fontSize: 16.sp,
+          fontSize: 14.sp,
           fontWeight: FontWeightManger.semiBold,
           color: AppColors.black,
         ),

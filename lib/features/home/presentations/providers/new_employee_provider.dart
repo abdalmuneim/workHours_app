@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
+import 'package:workhours/features/home/presentations/providers/home_provider.dart';
 
 class NewEmployeeProvider extends ChangeNotifier {
   BuildContext _context = NavigationService.context;
@@ -61,7 +63,21 @@ class NewEmployeeProvider extends ChangeNotifier {
     );
   }
 
-  addEmployee(int numOfEmp) {
+  bool _isDateTimeBetween(DateTime? target, DateTime? start, DateTime? end) {
+    if (target != null && start != null && end != null) {
+      return target.isAfter(start) && target.isBefore(end);
+    }
+    return false;
+  }
+
+  DateTime? _parseDateTime(String? formatTime) {
+    if (formatTime != null) {
+      return DateTime.parse(formatTime);
+    }
+    return null;
+  }
+
+  addEmployee(int? numOfEmp) {
     FocusManager.instance.primaryFocus?.unfocus();
     if (globalKey.currentState!.validate()) {
       groupTEXT = newGroupTEXT.text;
@@ -71,15 +87,20 @@ class NewEmployeeProvider extends ChangeNotifier {
           .collection(Collections.employees)
           .add(
             EmployeeModel(
-              id: numOfEmp,
+              id: Provider.of<HomeProvider>(_context).allEmployees.length + 1,
               name: nameTEXT.text.trim(),
               phone: phoneTEXT.text.trim(),
+              isAvailable: _isDateTimeBetween(
+                  DateTime.now(),
+                  _parseDateTime(vacationFromTEXT),
+                  _parseDateTime(vacationsToTEXT)),
               group: groupTEXT ?? newGroupTEXT.text.trim(),
               vacationFrom: vacationFromTEXT,
               vacationsTo: vacationsToTEXT,
             ).toMap(),
           )
           .then((value) {
+        addNewGroup();
         isLoadingEmp = false;
         notifyListeners();
       }).catchError((error) {
@@ -108,7 +129,7 @@ class NewEmployeeProvider extends ChangeNotifier {
                 EmployeeModel(
                   name: nameTEXT.text.trim(),
                   phone: phoneTEXT.text.trim(),
-                  group: newGroupTEXT.text.trim(),
+                  group: groupTEXT ?? newGroupTEXT.text.trim(),
                   vacationFrom: vacationFromTEXT,
                   vacationsTo: vacationsToTEXT,
                 ).toMap(),
