@@ -21,9 +21,14 @@ class Utils {
             topRight: Radius.circular(20),
           ),
         ),
+        isScrollControlled: true,
         context: _context,
         builder: (BuildContext context) {
-          return body;
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: body,
+          );
         },
       );
 

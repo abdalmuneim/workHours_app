@@ -53,6 +53,10 @@ class Assets {
   /// assets/images/svg/whatsapp-ic.svg
   static const String assetsImagesSvgWhatsappIc = "assets/images/svg/whatsapp-ic.svg";
 
+  /// Assets for assetsImagesUndrawNoData
+  /// assets/images/undraw_no_data.png
+  static const String assetsImagesUndrawNoData = "assets/images/undraw_no_data.png";
+
   /// Assets for assetsImagesVectorTopL
   /// assets/images/VectorTopL.png
   static const String assetsImagesVectorTopL = "assets/images/VectorTopL.png";

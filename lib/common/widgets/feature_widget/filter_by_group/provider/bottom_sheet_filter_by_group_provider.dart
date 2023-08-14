@@ -1,48 +1,57 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workhours/common/services/navigation_services.dart';
-import 'package:workhours/features/home/data/model/base_data.dart';
-import 'package:workhours/features/home/data/model/enums.dart';
+import 'package:workhours/common/utils/key_storage.dart';
+import 'package:workhours/generated/l10n.dart';
 
 class BottomSheetFilterByGroupProvider extends ChangeNotifier {
   BuildContext _context = NavigationService.context;
 
-  FilteringByGroupEnum _selectedFilterByGroupEnum = FilteringByGroupEnum.All;
-  late String _selectedFilterByGroup = groups[_selectedFilterByGroupEnum] ?? "";
-  setByGroupEnum(FilteringByGroupEnum valueEnum, String valueString) {
-    this._selectedFilterByGroupEnum = valueEnum;
+  late String _selectedFilterByGroup = groups[0];
+  setByGroupEnum(String valueString) {
     this._selectedFilterByGroup = valueString;
 
     notifyListeners();
   }
 
-  FilteringByGroupEnum get getFilterByGroupEnum => _selectedFilterByGroupEnum;
+  List<String> groups = [];
+  Future<List<String>> getGroups() async {
+    final Stream<QuerySnapshot<Map<String, dynamic>>> data =
+        await FirebaseFirestore.instance
+            .collection(Collections.groups)
+            .snapshots();
+
+    await for (var e in data) {
+      for (var data in e.docs) {
+        log("${data.data()}");
+        groups.add(data["groupName"]);
+      }
+      return groups;
+    }
+    notifyListeners();
+    return groups;
+  }
+
   String get getFilterByGroup => _selectedFilterByGroup;
 
   back() {
-    final Map<FilteringByGroupEnum, String> data = {
-      _selectedFilterByGroupEnum: _selectedFilterByGroup,
-    };
+    final data = _selectedFilterByGroup;
     print(data);
     _context.pop(data);
   }
 
-  init(FilteringByGroupEnum? valueEnum, String? valueString) async {
-    if (valueString != null) {
-      await groups.map((key, value) {
-        if (valueString == value) {
-          this._selectedFilterByGroupEnum = key;
+  init({String? initVal}) async {
+    groups.add(S.of(_context).all);
+    await getGroups();
+    if (initVal != null) {
+      await groups.map((value) {
+        if (initVal == value) {
           this._selectedFilterByGroup = value;
         }
-        return MapEntry(key, value);
-      });
-    } else if (valueEnum != null) {
-      await groups.map((key, value) {
-        if (valueEnum == key) {
-          this._selectedFilterByGroupEnum = key;
-          this._selectedFilterByGroup = value;
-        }
-        return MapEntry(key, value);
+        return value;
       });
     } else {}
   }

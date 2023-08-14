@@ -78,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمه المرور؟"),
         "editEmployee": MessageLookupByLibrary.simpleMessage("تعديل موظف"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
+        "emptyList": MessageLookupByLibrary.simpleMessage("القائمة فارغة"),
         "enterEmail":
             MessageLookupByLibrary.simpleMessage("ادخل البريد الالكتروني"),
         "enterFirstName":
@@ -145,6 +146,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "pleaseEnterAUsername":
             MessageLookupByLibrary.simpleMessage("الرجاء ادخال اسم المستخدم"),
+        "plzAddEmployee":
+            MessageLookupByLibrary.simpleMessage("برجاء اضافة موظفين"),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("اضغط مجددا للخروج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
