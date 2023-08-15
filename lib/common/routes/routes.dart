@@ -76,7 +76,6 @@ class Routes {
         path: RoutesStrings.newEmployee,
         builder: (BuildContext context, GoRouterState state) {
           int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
-          log(numOfEmp.toString());
           return NewEmployeeView(
             numOfEmp: numOfEmp,
           );
@@ -90,8 +89,10 @@ class Routes {
         builder: (BuildContext context, GoRouterState state) {
           final EmployeeModel employee =
               EmployeeModel.fromJson(state.queryParams["employee"]!);
+          int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
           return EditEmployeeView(
             employee: employee,
+            numOfEmp: numOfEmp,
           );
         },
       ),

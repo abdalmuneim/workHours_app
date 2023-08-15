@@ -24,7 +24,7 @@ class CreateListProvider<T> extends ChangeNotifier {
   final numOfHoursTEXT = TextEditingController();
 
   createList() {
-    _context.pushNamed(RoutesStrings.listOfEmployees);
+    _context.pushReplacementNamed(RoutesStrings.listOfEmployees);
   }
 
   changeFromDateTime() async {
@@ -62,6 +62,6 @@ class CreateListProvider<T> extends ChangeNotifier {
   }
 
   back() {
-    _context.pop();
+    _context.pushReplacementNamed(RoutesStrings.home);
   }
 }

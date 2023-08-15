@@ -83,18 +83,18 @@ class ListOfEmployees extends StatelessWidget {
                                       Icon(
                                         Icons.circle,
                                         color: employee.isAvailable!
-                                            ? AppColors.unActive
-                                            : AppColors.active,
+                                            ? AppColors.active
+                                            : AppColors.unActive,
                                         size: 12,
                                       ),
                                       .5.w.sw,
                                       CustomText(
                                         text: employee.isAvailable!
-                                            ? S.of(context).unavailable_text
-                                            : S.of(context).available_text,
+                                            ? S.of(context).available_text
+                                            : S.of(context).unavailable_text,
                                         color: employee.isAvailable!
-                                            ? AppColors.unActive
-                                            : AppColors.active,
+                                            ? AppColors.active
+                                            : AppColors.unActive,
                                         fontWeight: FontWeightManger.regular,
                                       ),
                                     ],
@@ -137,20 +137,23 @@ class ListOfEmployees extends StatelessWidget {
                                       ),
                                   children: [
                                     TextSpan(
-                                      text: S.of(context).vacations,
+                                      text: "${S.of(context).vacations}: ",
                                     ),
-                                    TextSpan(
-                                      text: " ${S.of(context).from} ",
-                                    ),
-                                    TextSpan(
-                                      text: employee.vacationFrom,
-                                    ),
-                                    TextSpan(
-                                      text: " ${S.of(context).to} ",
-                                    ),
-                                    TextSpan(
-                                      text: employee.vacationsTo,
-                                    ),
+                                    if (employee.vacationFrom != null ||
+                                        employee.vacationsTo != null) ...[
+                                      TextSpan(
+                                        text: " ${S.of(context).from} ",
+                                      ),
+                                      TextSpan(
+                                        text: employee.vacationFrom,
+                                      ),
+                                      TextSpan(
+                                        text: " ${S.of(context).to} ",
+                                      ),
+                                      TextSpan(
+                                        text: employee.vacationsTo,
+                                      ),
+                                    ]
                                   ],
                                 ),
                               ),

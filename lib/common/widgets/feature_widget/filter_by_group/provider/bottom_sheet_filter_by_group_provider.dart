@@ -10,32 +10,30 @@ import 'package:workhours/generated/l10n.dart';
 class BottomSheetFilterByGroupProvider extends ChangeNotifier {
   BuildContext _context = NavigationService.context;
 
-  late String _selectedFilterByGroup = groups[0];
-  setByGroupEnum(String valueString) {
+  String? _selectedFilterByGroup;
+  setByGroup(String valueString) {
     this._selectedFilterByGroup = valueString;
-
+    log(valueString);
     notifyListeners();
   }
 
   List<String> groups = [];
-  Future<List<String>> getGroups() async {
+  List<String> getGroups() {
+    groups.clear();
     final Stream<QuerySnapshot<Map<String, dynamic>>> data =
-        await FirebaseFirestore.instance
-            .collection(Collections.groups)
-            .snapshots();
-
-    await for (var e in data) {
+        FirebaseFirestore.instance.collection(Collections.groups).snapshots();
+    data.forEach((e) {
       for (var data in e.docs) {
-        log("${data.data()}");
         groups.add(data["groupName"]);
       }
-      return groups;
-    }
-    notifyListeners();
+      groups.add(S.of(_context).all);
+      notifyListeners();
+    });
+    groups.reversed;
     return groups;
   }
 
-  String get getFilterByGroup => _selectedFilterByGroup;
+  String? get getFilterByGroup => _selectedFilterByGroup;
 
   back() {
     final data = _selectedFilterByGroup;
@@ -44,15 +42,10 @@ class BottomSheetFilterByGroupProvider extends ChangeNotifier {
   }
 
   init({String? initVal}) async {
-    groups.add(S.of(_context).all);
-    await getGroups();
     if (initVal != null) {
-      await groups.map((value) {
-        if (initVal == value) {
-          this._selectedFilterByGroup = value;
-        }
-        return value;
-      });
-    } else {}
+      _selectedFilterByGroup = initVal;
+    } else {
+      _selectedFilterByGroup = S.of(_context).all;
+    }
   }
 }

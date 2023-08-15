@@ -26,21 +26,30 @@ class HomeProvider extends ChangeNotifier {
   List<EmployeeModel> allEmployees = [];
   List<EmployeeModel> availableEmployees = [];
   List<EmployeeModel> unavailableEmployees = [];
+  bool isLoading = false;
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllEmployees() {
+  Future<List<EmployeeModel>> getAllEmployees() async {
+    allEmployees.clear();
+    isLoading = true;
+    notifyListeners();
     final Stream<QuerySnapshot<Map<String, dynamic>>> data =
-        _firebase.collection(Collections.employees).snapshots();
+        await _firebase.collection(Collections.employees).snapshots();
     data.forEach((e) {
       for (var data in e.docs) {
-        allEmployees.add(
-          EmployeeModel.fromMap(
-            data.data(),
-          ),
+        final emp = EmployeeModel.fromMap(
+          data.data(),
         );
+        allEmployees.add(emp);
+        if (emp.isAvailable!) {
+          availableEmployees.add(emp);
+        } else {
+          unavailableEmployees.add(emp);
+        }
       }
+      isLoading = false;
       notifyListeners();
     });
-    return data;
+    return allEmployees;
   }
 
   _getUser() async {
@@ -52,8 +61,6 @@ class HomeProvider extends ChangeNotifier {
 
   onChangeSelectFilterAvailable(
       FilteringByAvailableEnum filterEnum, String? value) {
-    print(filterEnum);
-    print(value);
     try {
       state.setByAvailableEnum(filterEnum, value!);
     } catch (e) {
@@ -63,18 +70,21 @@ class HomeProvider extends ChangeNotifier {
   }
 
   navToCreateList() {
-    _context.pushNamed(RoutesStrings.createList);
+    _context.pushReplacementNamed(RoutesStrings.createList);
   }
 
   navToAddNewEmployee() {
-    _context.pushNamed(RoutesStrings.newEmployee,
+    _context.pushReplacementNamed(RoutesStrings.newEmployee,
         queryParams: {"numOfEmp": "${allEmployees.length}"});
   }
 
   navToEditEmployee(EmployeeModel employee) {
-    _context.pushNamed(
+    _context.pushReplacementNamed(
       RoutesStrings.editEmployee,
-      queryParams: {"employee": employee.toJson()},
+      queryParams: {
+        "employee": employee.toJson(),
+        "numOfEmp": allEmployees.length.toString()
+      },
     );
   }
 
@@ -88,7 +98,7 @@ class HomeProvider extends ChangeNotifier {
 
   init() async {
     await _getUser();
-    await getAllEmployees();
+    getAllEmployees();
     await Provider.of<BottomSheetFilterByGroupProvider>(_context, listen: false)
         .getGroups();
     setFilterByGroup = await Provider.of<BottomSheetFilterByGroupProvider>(

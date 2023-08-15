@@ -25,6 +25,7 @@ class ChangePasswordProvider extends ChangeNotifier {
       await user.reauthenticateWithCredential(cred).then((value) async {
         await user.updatePassword(newPasswordTEXT.text.trim()).then((_) {
           isLoading = false;
+          notifyListeners();
         }).catchError((error) {
           print(error);
         });
@@ -32,7 +33,14 @@ class ChangePasswordProvider extends ChangeNotifier {
         print(err);
       });
     }
+    clearFiles();
     _context.pop();
+  }
+
+  clearFiles() {
+    oldPasswordTEXT.clear();
+    newPasswordTEXT.clear();
+    confirmNewPasswordTEXT.clear();
   }
 
   back() {

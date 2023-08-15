@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -12,7 +11,6 @@ import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
 import 'package:workhours/features/home/data/model/base_data.dart';
-import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/features/home/presentations/providers/home_provider.dart';
 import 'package:workhours/features/home/presentations/views/widgets/impty_employee.dart';
@@ -269,26 +267,16 @@ class _HomeViewState extends State<HomeView> {
                 2.w.sh,
 
                 /// list of employees
-                StreamBuilder(
-                    stream: read.getAllEmployees(),
-                    builder: (context,
-                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
-                      if (snapshot.hasData) {
-                        List<EmployeeModel> data = [];
-                        for (var e in snapshot.data!.docs) {
-                          data.add(EmployeeModel.fromMap(e.data()));
-                        }
-                        if (data.isEmpty) {
-                          return EmptyListEmployee(
-                            onPress: () => read.navToAddNewEmployee(),
-                          );
-                        }
-                        return Expanded(
-                            child: ListOfEmployees(employees: data));
-                      }
-                      return Center(child: CircularProgressIndicator());
-                    }),
+                Consumer<HomeProvider>(
+                    builder: (context, value, child) => value.isLoading
+                        ? CircularProgressIndicator()
+                        : value.allEmployees.isEmpty
+                            ? EmptyListEmployee(
+                                onPress: () => read.navToAddNewEmployee(),
+                              )
+                            : Expanded(
+                                child: ListOfEmployees(
+                                    employees: value.allEmployees))),
               ],
             ),
           ),

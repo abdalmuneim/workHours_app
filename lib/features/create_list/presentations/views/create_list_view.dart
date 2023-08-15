@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:workhours/common/helper/validator.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
+import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/common/widgets/custom_appbar.dart';
@@ -38,7 +39,10 @@ class _CreateListViewState extends State<CreateListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
-      appBar: CustomAppBar(title: S.of(context).createList),
+      appBar: CustomAppBar(
+        title: S.of(context).createList,
+        fromScreen: RoutesStrings.home,
+      ),
       body: Form(
         key: watch.globalKey,
         child: ListView(

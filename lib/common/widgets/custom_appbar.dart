@@ -43,7 +43,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: SvgPicture.asset(
                 Assets.assetsImagesSvgArrowBackIc,
               ),
-              onPressed: onPressBack ?? () => NavigationService.context.pop(),
+              onPressed: onPressBack ??
+                  () => NavigationService.context
+                      .pushReplacementNamed(fromScreen!),
             )
           : null,
     );

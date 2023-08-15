@@ -15,7 +15,13 @@ class NewPasswordProvider extends ChangeNotifier {
   save() {
     if (_globalKey.currentState!.validate()) {
       _context.pushReplacementNamed(RoutesStrings.signIn);
+      clearFiles();
     }
+  }
+
+  clearFiles() {
+    newPasswordTEXT.clear();
+    confirmNewPasswordTEXT.clear();
   }
 
   back() {

@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
+import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/utils/extension.dart';
+import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/features/create_list/presentations/providers/list_of_employees_provider.dart';
@@ -26,7 +28,10 @@ class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size(100.w, 10), child: AppBar()),
+      appBar: CustomAppBar(
+        heightAppBar: 10,
+        fromScreen: RoutesStrings.createList,
+      ),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
