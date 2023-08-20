@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workhours/features/connect_with_us/connect_with_us_view.dart';
 import 'package:workhours/features/profile/presentations/views/change_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/forget_password_view.dart';
 import 'package:workhours/features/auth/presentations/views/new_password_view.dart';
@@ -76,7 +77,6 @@ class Routes {
         path: RoutesStrings.newEmployee,
         builder: (BuildContext context, GoRouterState state) {
           int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
-          log(numOfEmp.toString());
           return NewEmployeeView(
             numOfEmp: numOfEmp,
           );
@@ -90,8 +90,10 @@ class Routes {
         builder: (BuildContext context, GoRouterState state) {
           final EmployeeModel employee =
               EmployeeModel.fromJson(state.queryParams["employee"]!);
+          int numOfEmp = int.parse(state.queryParams["numOfEmp"]!);
           return EditEmployeeView(
             employee: employee,
+            numOfEmp: numOfEmp,
           );
         },
       ),
@@ -147,6 +149,15 @@ class Routes {
         path: RoutesStrings.changePassword,
         builder: (BuildContext context, GoRouterState state) {
           return const ChangePasswordView();
+        },
+      ),
+
+      /// changePassword
+      GoRoute(
+        name: RoutesStrings.callUs,
+        path: RoutesStrings.callUs,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ConnectWithUsView();
         },
       ),
     ],

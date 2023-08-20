@@ -98,6 +98,7 @@ class SignUpProvider extends ChangeNotifier {
           _isLoading = false;
           notifyListeners();
           if (FirebaseAuth.instance.currentUser != null) {
+            clearFiles();
             _context.pushReplacementNamed(
               RoutesStrings.verifyEmail,
               queryParams: {"from": RoutesStrings.signUp},
@@ -110,5 +111,13 @@ class SignUpProvider extends ChangeNotifier {
         }
       }
     }
+  }
+
+  clearFiles() {
+    emailTEXT.clear();
+    passwordTEXT.clear();
+    confirmPasswordTEXT.clear();
+    firstNameTEXT.clear();
+    lastNAmeTEXT.clear();
   }
 }

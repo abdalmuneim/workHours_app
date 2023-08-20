@@ -108,12 +108,16 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       3.w.sw,
                       Expanded(
                         child: CustomElevatedButton(
-                          child: CustomText(
-                            text: S.of(context).save,
-                            fontWeight: FontWeightManger.semiBold,
-                            fontSize: 14.sp,
-                          ),
-                          onPressed: () => read.changePassword(),
+                          child: watch.isLoading
+                              ? CircularProgressIndicator()
+                              : CustomText(
+                                  text: S.of(context).save,
+                                  fontWeight: FontWeightManger.semiBold,
+                                  fontSize: 14.sp,
+                                ),
+                          onPressed: watch.isLoading
+                              ? null
+                              : () => read.changePassword(),
                         ),
                       ),
                     ],

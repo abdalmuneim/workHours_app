@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:workhours/common/widgets/feature_widget/drawer/provider/drawer_provider.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/provider/bottom_sheet_filter_by_group_provider.dart';
 import 'package:workhours/features/auth/presentations/providers/forget_password_provider.dart';
 import 'package:workhours/features/auth/presentations/providers/new_password_provider.dart';
@@ -63,5 +64,8 @@ class Providers {
     // ---------------------------- Start Component providers ----------------------
     /// bottom sheet filter be group provider
     ChangeNotifierProvider(create: (_) => BottomSheetFilterByGroupProvider()),
+
+    ///Drawer
+    ChangeNotifierProvider(create: (_) => DrawerProvider()),
   ];
 }

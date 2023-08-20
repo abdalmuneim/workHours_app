@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -7,12 +6,12 @@ import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/common/widgets/custom_appbar.dart';
+import 'package:workhours/common/widgets/feature_widget/drawer/view/drawer_view.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/view/bottom_sheet_filter_by_group.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/common/widgets/custom_text_form_field.dart';
 import 'package:workhours/features/home/data/model/base_data.dart';
-import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/features/home/presentations/providers/home_provider.dart';
 import 'package:workhours/features/home/presentations/views/widgets/impty_employee.dart';
@@ -45,30 +44,14 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
+      drawer: Consumer(builder: (context, d, _) {
+        return MyDrawer();
+      }),
       appBar: CustomAppBar(
+        centerTitle: true,
         heightAppBar: 70,
-        title: S.of(context).welcomeO(watch.user?.firstName ?? ""),
+        title: S.of(context).homePage,
         backButton: false,
-        action: [
-          GestureDetector(
-            onTap: () => read.navToProfile(),
-            child: Card(
-              elevation: 1,
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: AppColors.lightGrey),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.person_2_outlined,
-                  color: AppColors.primary,
-                  size: 6.w,
-                ),
-              ),
-            ),
-          ),
-          2.w.sw,
-        ],
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -269,26 +252,16 @@ class _HomeViewState extends State<HomeView> {
                 2.w.sh,
 
                 /// list of employees
-                StreamBuilder(
-                    stream: read.getAllEmployees(),
-                    builder: (context,
-                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
-                      if (snapshot.hasData) {
-                        List<EmployeeModel> data = [];
-                        for (var e in snapshot.data!.docs) {
-                          data.add(EmployeeModel.fromMap(e.data()));
-                        }
-                        if (data.isEmpty) {
-                          return EmptyListEmployee(
-                            onPress: () => read.navToAddNewEmployee(),
-                          );
-                        }
-                        return Expanded(
-                            child: ListOfEmployees(employees: data));
-                      }
-                      return Center(child: CircularProgressIndicator());
-                    }),
+                Consumer<HomeProvider>(
+                    builder: (context, value, child) => value.isLoading
+                        ? Center(child: CircularProgressIndicator())
+                        : value.allEmployees.isEmpty
+                            ? EmptyListEmployee(
+                                onPress: () => read.navToAddNewEmployee(),
+                              )
+                            : Expanded(
+                                child: ListOfEmployees(
+                                    employees: value.allEmployees))),
               ],
             ),
           ),

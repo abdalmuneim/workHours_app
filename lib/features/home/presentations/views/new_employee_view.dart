@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:workhours/common/app_constant/app_constants.dart';
 import 'package:workhours/common/helper/validator.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
+import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/common/widgets/custom_appbar.dart';
@@ -32,7 +32,10 @@ class _NewEmployeeViewState extends State<NewEmployeeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
-      appBar: CustomAppBar(title: S.of(context).addEmployee),
+      appBar: CustomAppBar(
+        title: S.of(context).addEmployee,
+        fromScreen: RoutesStrings.home,
+      ),
       body: Form(
         key: watch.globalKey,
         child: Consumer<NewEmployeeProvider>(builder: (context, stat, _) {
@@ -52,8 +55,8 @@ class _NewEmployeeViewState extends State<NewEmployeeView> {
               2.h.sh,
 
               /// phone
-              CustomTextFormField(
-                // keyboardType: TextInputType.phone,
+              /* CustomTextFormField(
+                keyboardType: TextInputType.phone,
                 controller: watch.phoneTEXT,
                 border: true,
                 labelText: S.of(context).phone,
@@ -62,7 +65,7 @@ class _NewEmployeeViewState extends State<NewEmployeeView> {
                 counterText: "",
                 validator: (value) => AppValidator.validateFields(
                     value, ValidationType.phone, context),
-              ),
+              ), */
               4.h.sh,
               CustomText(
                 text: S.of(context).group,

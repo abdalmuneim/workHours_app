@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:workhours/common/helper/validator.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
+import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/common/widgets/custom_appbar.dart';
@@ -19,9 +20,10 @@ import 'package:workhours/generated/assets/assets.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class EditEmployeeView extends StatefulWidget {
-  const EditEmployeeView({super.key, required this.employee});
+  const EditEmployeeView(
+      {super.key, required this.employee, required this.numOfEmp});
   final EmployeeModel employee;
-
+  final int numOfEmp;
   @override
   State<EditEmployeeView> createState() => _EditEmployeeViewState();
 }
@@ -40,7 +42,10 @@ class _EditEmployeeViewState extends State<EditEmployeeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
-      appBar: CustomAppBar(title: S.of(context).editEmployee),
+      appBar: CustomAppBar(
+        title: S.of(context).editEmployee,
+        fromScreen: RoutesStrings.home,
+      ),
       body: Form(
         key: watch.globalKey,
         child: ListView(
@@ -223,12 +228,16 @@ class _EditEmployeeViewState extends State<EditEmployeeView> {
                 3.w.sw,
                 Expanded(
                   child: CustomElevatedButton(
-                    child: CustomText(
-                      text: S.of(context).add,
-                      fontWeight: FontWeightManger.semiBold,
-                      fontSize: 14.sp,
-                    ),
-                    onPressed: () => read.editEmployee(),
+                    child: watch.isLoadingEmp
+                        ? CircularProgressIndicator()
+                        : CustomText(
+                            text: S.of(context).editEmployee,
+                            fontWeight: FontWeightManger.semiBold,
+                            fontSize: 14.sp,
+                          ),
+                    onPressed: watch.isLoadingEmp
+                        ? null
+                        : () => read.editEmployee(widget.numOfEmp),
                   ),
                 ),
               ],

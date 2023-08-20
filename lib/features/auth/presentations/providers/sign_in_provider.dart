@@ -69,6 +69,7 @@ class SignInProvider extends ChangeNotifier {
         FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
         flutterSecureStorage.write(
             key: KeyStorage.userUID, value: _firebase.currentUser?.uid);
+        _clearFiles();
 
         /// navigator
         if (_firebase.currentUser!.emailVerified) {
@@ -82,6 +83,11 @@ class SignInProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  _clearFiles() {
+    emailTEXT.clear();
+    passwordTEXT.clear();
   }
 
   notHaveAccount() {

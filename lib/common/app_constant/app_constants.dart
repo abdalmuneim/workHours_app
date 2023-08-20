@@ -1,4 +1,8 @@
 class AppConstants {
+  static String get email => "alma.lawson@example.com";
+  static String get phone => "(239) 555-0108";
+  static String get location => "29 شارع الزهور, ميدان رمسيس, القاهره, مصر.";
+
   static List<LanguageModel> languages = [
     LanguageModel(
         imageUrl: 'en.png',

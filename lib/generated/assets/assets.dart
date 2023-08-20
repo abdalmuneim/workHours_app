@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/animations/no-connection-to-internet.json
   static const String assetsImagesAnimationsNoConnectionToInternet = "assets/images/animations/no-connection-to-internet.json";
 
+  /// Assets for assetsImagesContactUs
+  /// assets/images/contact-us.png
+  static const String assetsImagesContactUs = "assets/images/contact-us.png";
+
   /// Assets for assetsImagesForgotPassword
   /// assets/images/forgot-password.png
   static const String assetsImagesForgotPassword = "assets/images/forgot-password.png";

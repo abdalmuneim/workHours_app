@@ -30,14 +30,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       child: Scaffold(
         appBar: CustomAppBar(
           heightAppBar: 80,
-          onPressBack: () =>  read.back(),
+          onPressBack: () => read.back(),
           backgroundColor: AppColors.scaffoldColor,
           CustomTitle: Image.asset(
             Assets.assetsImagesLogo,
             width: 50.w,
             height: 10.w,
           ),
-          titleCenter: true,
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 5.w),

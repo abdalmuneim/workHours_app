@@ -23,11 +23,9 @@ ThemeData get applicationTheme => ThemeData(
         iconColor: AppColors.black,
         visualDensity: VisualDensity.comfortable,
         titleTextStyle: TextStyle(
-          fontFamily: FontManager.fontFamily,
-        ),
+            fontFamily: FontManager.fontFamily, color: AppColors.black),
         subtitleTextStyle: TextStyle(
-          fontFamily: FontManager.fontFamily,
-        ),
+            fontFamily: FontManager.fontFamily, color: AppColors.lightGrey),
       ),
 
       /// CardViewTheme
@@ -76,8 +74,8 @@ ThemeData get applicationTheme => ThemeData(
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 3,
-          minimumSize: Size(100.w, 50),
-          maximumSize: Size(100.w, 50),
+          minimumSize: Size(100.w, 40),
+          maximumSize: Size(100.w, 40),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

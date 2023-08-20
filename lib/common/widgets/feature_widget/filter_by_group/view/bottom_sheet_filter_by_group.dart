@@ -68,7 +68,7 @@ class _BottomSheetFilterByGroupState<T>
                       final String? val = watch.groups[index];
 
                       return InkWell(
-                        onTap: () => read.setByGroupEnum(val ?? ""),
+                        onTap: () => read.setByGroup(val ?? ""),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Row(

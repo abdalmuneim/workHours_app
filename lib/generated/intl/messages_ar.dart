@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   static String m0(all, avalible, notAvalile) =>
-      "الكلي (${all})   المتوفر (${avalible})   الغير متوفر (${notAvalile})";
+      "الكل (${all})   المتوفر (${avalible})   الغير متوفر (${notAvalile})";
 
   static String m1(member) => "${member} موجود بالفعل";
 
@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تاكيد الرقم السري"),
         "confirmPasswordIsNotCorrect":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور غير صحيحة"),
+        "connectingWithUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
         "continuo": MessageLookupByLibrary.simpleMessage("استمرار"),
         "counterEmployees": m0,
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -175,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "toDate": MessageLookupByLibrary.simpleMessage("الى تاريخ"),
         "unavailable": MessageLookupByLibrary.simpleMessage("الغير متوفر"),
         "unavailable_text": MessageLookupByLibrary.simpleMessage("غير متوفر"),
+        "updataSuccess":
+            MessageLookupByLibrary.simpleMessage("تم التحديث بنجاح"),
         "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
         "validateNameAndPhone": MessageLookupByLibrary.simpleMessage(
             "تاكد من ادخال الاسم ورقم الهاتف"),

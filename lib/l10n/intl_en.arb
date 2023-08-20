@@ -67,7 +67,7 @@
   "resentLink": "اعادة ارسال الرمز",
   "menuOfEmployees": "قائمة الموظفين",
   "addNewEmployee": "اضافة موظف جديد",
-  "counterEmployees": "الكلي ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})",
+  "counterEmployees": "الكل ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})",
   "@counterEmployees": {
     "placeholder": {
       "all": {},
@@ -139,5 +139,7 @@
   "enterGroupName": "أدخل سم المجموعة",
   "validateNameAndPhone": "تاكد من ادخال الاسم ورقم الهاتف",
   "emptyList": "القائمة فارغة",
-  "plzAddEmployee": "برجاء اضافة موظفين"
+  "plzAddEmployee": "برجاء اضافة موظفين",
+  "connectingWithUs": "تواصل معنا",
+  "updataSuccess": "تم التحديث بنجاح"
 }

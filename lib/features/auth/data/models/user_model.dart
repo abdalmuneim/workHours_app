@@ -17,10 +17,10 @@ class UserModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['email'] = this.email;
-    data['isVerified'] = this.isVerified;
+    if (firstName != null) data['firstName'] = this.firstName;
+    if (lastName != null) data['lastName'] = this.lastName;
+    if (email != null) data['email'] = this.email;
+    if (isVerified != null) data['isVerified'] = this.isVerified;
     return data;
   }
 }
