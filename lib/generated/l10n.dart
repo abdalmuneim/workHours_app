@@ -580,10 +580,10 @@ class S {
     );
   }
 
-  /// `الكلي ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})`
+  /// `الكل ({all})   المتوفر ({avalible})   الغير متوفر ({notAvalile})`
   String counterEmployees(Object all, Object avalible, Object notAvalile) {
     return Intl.message(
-      'الكلي ($all)   المتوفر ($avalible)   الغير متوفر ($notAvalile)',
+      'الكل ($all)   المتوفر ($avalible)   الغير متوفر ($notAvalile)',
       name: 'counterEmployees',
       desc: '',
       args: [all, avalible, notAvalile],
@@ -1185,6 +1185,26 @@ class S {
     return Intl.message(
       'برجاء اضافة موظفين',
       name: 'plzAddEmployee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تواصل معنا`
+  String get connectingWithUs {
+    return Intl.message(
+      'تواصل معنا',
+      name: 'connectingWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم التحديث بنجاح`
+  String get updataSuccess {
+    return Intl.message(
+      'تم التحديث بنجاح',
+      name: 'updataSuccess',
       desc: '',
       args: [],
     );

@@ -19,22 +19,20 @@ class ChangePasswordProvider extends ChangeNotifier {
       //Create an instance of the current user.
       var user = await FirebaseAuth.instance.currentUser!;
       //Must re-authenticate user before updating the password. Otherwise it may fail or user get signed out.
-
-      final cred = await EmailAuthProvider.credential(
-          email: user.email!, password: oldPasswordTEXT.text.trim());
-      await user.reauthenticateWithCredential(cred).then((value) async {
-        await user.updatePassword(newPasswordTEXT.text.trim()).then((_) {
-          isLoading = false;
-          notifyListeners();
-        }).catchError((error) {
-          print(error);
+      try {
+        final cred = await EmailAuthProvider.credential(
+            email: user.email!, password: oldPasswordTEXT.text.trim());
+        await user.reauthenticateWithCredential(cred).then((value) async {
+          await user.updatePassword(newPasswordTEXT.text.trim()).then((_) {});
         });
-      }).catchError((err) {
-        print(err);
-      });
+        isLoading = false;
+        notifyListeners();
+      } catch (e) {
+        print(e);
+      }
+      clearFiles();
+      _context.pop();
     }
-    clearFiles();
-    _context.pop();
   }
 
   clearFiles() {

@@ -6,6 +6,7 @@ import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/common/widgets/custom_appbar.dart';
+import 'package:workhours/common/widgets/feature_widget/drawer/view/drawer_view.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/view/bottom_sheet_filter_by_group.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
@@ -43,30 +44,14 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor2,
+      drawer: Consumer(builder: (context, d, _) {
+        return MyDrawer();
+      }),
       appBar: CustomAppBar(
+        centerTitle: true,
         heightAppBar: 70,
-        title: S.of(context).welcomeO(watch.user?.firstName ?? ""),
+        title: S.of(context).homePage,
         backButton: false,
-        action: [
-          GestureDetector(
-            onTap: () => read.navToProfile(),
-            child: Card(
-              elevation: 1,
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: AppColors.lightGrey),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.person_2_outlined,
-                  color: AppColors.primary,
-                  size: 6.w,
-                ),
-              ),
-            ),
-          ),
-          2.w.sw,
-        ],
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -269,7 +254,7 @@ class _HomeViewState extends State<HomeView> {
                 /// list of employees
                 Consumer<HomeProvider>(
                     builder: (context, value, child) => value.isLoading
-                        ? CircularProgressIndicator()
+                        ? Center(child: CircularProgressIndicator())
                         : value.allEmployees.isEmpty
                             ? EmptyListEmployee(
                                 onPress: () => read.navToAddNewEmployee(),

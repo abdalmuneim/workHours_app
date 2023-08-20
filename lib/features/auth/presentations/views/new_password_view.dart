@@ -37,7 +37,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
             width: 50.w,
             height: 10.w,
           ),
-          titleCenter: true,
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 5.w),

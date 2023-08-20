@@ -75,7 +75,7 @@ class ListOfEmployees extends StatelessWidget {
                                       CustomText(
                                         text: employee.name ?? "",
                                         fontWeight: FontWeightManger.medium,
-                                        fontSize: 14.sp,
+                                        fontSize: 12.sp,
                                       ),
                                       3.w.sw,
 

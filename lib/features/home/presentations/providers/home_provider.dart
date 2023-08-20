@@ -32,23 +32,26 @@ class HomeProvider extends ChangeNotifier {
     allEmployees.clear();
     isLoading = true;
     notifyListeners();
-    final Stream<QuerySnapshot<Map<String, dynamic>>> data =
-        await _firebase.collection(Collections.employees).snapshots();
-    data.forEach((e) {
-      for (var data in e.docs) {
-        final emp = EmployeeModel.fromMap(
-          data.data(),
-        );
+
+    await _firebase
+        .collection(Collections.employees)
+        .snapshots()
+        .listen((event) {
+      allEmployees.clear();
+      availableEmployees.clear();
+      unavailableEmployees.clear();
+      event.docs.forEach((e) async {
+        final emp = EmployeeModel.fromMap(e.data());
         allEmployees.add(emp);
         if (emp.isAvailable!) {
           availableEmployees.add(emp);
         } else {
           unavailableEmployees.add(emp);
         }
-      }
-      isLoading = false;
-      notifyListeners();
+      });
     });
+    isLoading = false;
+    notifyListeners();
     return allEmployees;
   }
 
@@ -101,10 +104,13 @@ class HomeProvider extends ChangeNotifier {
     getAllEmployees();
     await Provider.of<BottomSheetFilterByGroupProvider>(_context, listen: false)
         .getGroups();
-    setFilterByGroup = await Provider.of<BottomSheetFilterByGroupProvider>(
-            _context,
-            listen: false)
-        .groups
-        .first;
+    Future.delayed(
+      Duration(milliseconds: 300),
+      () async => setFilterByGroup =
+          await Provider.of<BottomSheetFilterByGroupProvider>(_context,
+                  listen: false)
+              .groups
+              .first,
+    );
   }
 }

@@ -14,4 +14,5 @@ class RoutesStrings {
   static const newPassword = '/newPassword';
   static const profile = '/profile';
   static const changePassword = '/changePassword';
+  static const callUs = '/callUs';
 }

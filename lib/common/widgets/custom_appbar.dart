@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.heightAppBar = 50,
     this.fromScreen,
     this.CustomTitle,
-    this.titleCenter = false,
+    this.centerTitle = false,
     this.backgroundColor = AppColors.white,
     this.backButton = true,
     this.onPressBack,
@@ -23,14 +23,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? fromScreen;
   final Widget? CustomTitle;
   final List<Widget>? action;
-  final bool titleCenter;
+  final bool centerTitle;
   final Color? backgroundColor;
   final bool backButton;
   final void Function()? onPressBack;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: titleCenter,
+      centerTitle: centerTitle,
       backgroundColor: backgroundColor,
       title: CustomTitle ??
           Text(

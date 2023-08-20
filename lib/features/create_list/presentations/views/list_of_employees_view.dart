@@ -10,7 +10,7 @@ import 'package:workhours/common/widgets/custom_appbar.dart';
 import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/features/create_list/presentations/providers/list_of_employees_provider.dart';
-import 'package:workhours/features/create_list/presentations/widgets/list_of_employees.dart';
+import 'package:workhours/features/create_list/presentations/views/widgets/list_of_employees.dart';
 import 'package:workhours/generated/assets/assets.dart';
 import 'package:workhours/generated/l10n.dart';
 

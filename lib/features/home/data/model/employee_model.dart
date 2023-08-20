@@ -39,16 +39,16 @@ class EmployeeModel {
 
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['workingFrom'] = this.workingFrom;
-    data['workingTo'] = this.workingTo;
-    data['isAvailable'] = this.isAvailable;
-    data['phone'] = this.phone;
-    data['name'] = this.name;
-    data['group'] = this.group;
-    data['vacationFrom'] = this.vacationFrom;
-    data['vacationsTo'] = this.vacationsTo;
+    if (id != null) data['id'] = this.id;
+    if (name != null) data['name'] = this.name;
+    if (workingFrom != null) data['workingFrom'] = this.workingFrom;
+    if (workingTo != null) data['workingTo'] = this.workingTo;
+    if (isAvailable != null) data['isAvailable'] = this.isAvailable;
+    if (phone != null) data['phone'] = this.phone;
+    if (group != null) data['group'] = this.group;
+    if (vacationFrom != null) data['vacationFrom'] = this.vacationFrom;
+    if (group != null) data['group'] = this.group;
+    if (vacationsTo != null) data['vacationsTo'] = this.vacationsTo;
     return data;
   }
 
