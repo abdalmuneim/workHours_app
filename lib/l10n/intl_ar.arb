@@ -139,5 +139,6 @@
   "emptyList": "القائمة فارغة",
   "plzAddEmployee": "برجاء اضافة موظفين",
   "connectingWithUs": "تواصل معنا",
-  "updataSuccess": "تم التحديث بنجاح"
+  "updataSuccess": "تم التحديث بنجاح",
+  "chosessGroup": "اختر مجموعة"
 }

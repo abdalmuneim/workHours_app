@@ -146,9 +146,6 @@ class Utils {
       {DateTime? initial, DateTime? selected}) async {
     var date = await showDialog(
       context: _context,
-      // initialDate: selected ?? DateTime.now(),
-      // firstDate: initial ?? DateTime.now(),
-      // lastDate: DateTime(DateTime.now().year, DateTime.now().month + 2),
       builder: (context) => Theme(
         data: Theme.of(context).copyWith(
           colorScheme: ColorScheme.light(

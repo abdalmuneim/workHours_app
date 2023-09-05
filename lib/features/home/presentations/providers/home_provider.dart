@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workhours/common/helper/date_time.dart';
 import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
@@ -28,38 +31,37 @@ class HomeProvider extends ChangeNotifier {
   List<EmployeeModel> unavailableEmployees = [];
   bool isLoading = false;
 
+  _updateAvailableEmployees() async {
+    final event = await _firebase.collection(Collections.employees).get();
+    event.docs.forEach((e) async {
+      final emp = EmployeeModel.fromMap(e.data());
+      log("before: ${emp.isAvailable}");
+      await _update(emp);
+    });
+  }
+
   Future<List<EmployeeModel>> getAllEmployees() async {
     allEmployees.clear();
+    availableEmployees.clear();
+    unavailableEmployees.clear();
     isLoading = true;
     notifyListeners();
 
-    await _firebase
-        .collection(Collections.employees)
-        .snapshots()
-        .listen((event) {
-      allEmployees.clear();
-      availableEmployees.clear();
-      unavailableEmployees.clear();
-      event.docs.forEach((e) async {
-        final emp = EmployeeModel.fromMap(e.data());
-        allEmployees.add(emp);
-        if (emp.isAvailable!) {
-          availableEmployees.add(emp);
-        } else {
-          unavailableEmployees.add(emp);
-        }
-      });
+    final event = await _firebase.collection(Collections.employees).get();
+    event.docs.forEach((e) async {
+      final emp = EmployeeModel.fromMap(e.data());
+      log("after: ${emp.isAvailable}");
+      allEmployees.add(emp);
+      if (emp.isAvailable!) {
+        availableEmployees.add(emp);
+      } else {
+        unavailableEmployees.add(emp);
+      }
     });
+
     isLoading = false;
     notifyListeners();
     return allEmployees;
-  }
-
-  _getUser() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final List<String>? u = await preferences.getStringList(KeyStorage.user);
-    user = UserModel(firstName: u![0]);
-    notifyListeners();
   }
 
   onChangeSelectFilterAvailable(
@@ -73,7 +75,8 @@ class HomeProvider extends ChangeNotifier {
   }
 
   navToCreateList() {
-    _context.pushReplacementNamed(RoutesStrings.createList);
+    _context.pushReplacementNamed(RoutesStrings.createList,
+        extra: availableEmployees);
   }
 
   navToAddNewEmployee() {
@@ -100,8 +103,9 @@ class HomeProvider extends ChangeNotifier {
   }
 
   init() async {
-    await _getUser();
+    await _updateAvailableEmployees();
     getAllEmployees();
+
     await Provider.of<BottomSheetFilterByGroupProvider>(_context, listen: false)
         .getGroups();
     Future.delayed(
@@ -112,5 +116,14 @@ class HomeProvider extends ChangeNotifier {
               .groups
               .first,
     );
+  }
+
+  _update(EmployeeModel emp) async {
+    await employeesFR.doc(emp.id.toString()).update({
+      "isAvailable": await isDateTimeBetween(
+          parseDateTime(DateFormat().add_yMEd().format(DateTime.now())),
+          emp.vacationFrom,
+          emp.vacationsTo)
+    });
   }
 }

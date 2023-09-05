@@ -1,8 +1,13 @@
 import 'package:intl/intl.dart';
 
-bool isDateTimeBetween(DateTime? target, DateTime? start, DateTime? end) {
+bool isDateTimeBetween(DateTime? target, String? start, String? end) {
   if (target != null && start != null && end != null) {
-    return target.isAfter(start) && target.isBefore(end);
+    if (target == parseDateTime(start)) {
+      return false;
+    } else {
+      return target.isAfter(parseDateTime(start)!) &&
+          target.isBefore(parseDateTime(end)!);
+    }
   }
   return true;
 }

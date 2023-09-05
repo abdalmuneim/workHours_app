@@ -14,12 +14,14 @@ import 'package:workhours/common/widgets/custom_text_form_field.dart';
 import 'package:workhours/common/widgets/feature_widget/filter_by_group/view/bottom_sheet_filter_by_group.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/features/create_list/presentations/providers/create_list_provider.dart';
+import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/data/model/enums.dart';
 import 'package:workhours/generated/assets/assets.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class CreateListView extends StatefulWidget {
-  const CreateListView({super.key});
+  const CreateListView({super.key, required this.employees});
+  final List<EmployeeModel> employees;
 
   @override
   State<CreateListView> createState() => _CreateListViewState();
@@ -49,6 +51,7 @@ class _CreateListViewState extends State<CreateListView> {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           children: [
             CustomText(
+              fontSize: 10.sp,
               text: S.of(context).group,
             ),
 
@@ -69,7 +72,7 @@ class _CreateListViewState extends State<CreateListView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   CustomText(
-                    text: S.of(context).chosesGroup,
+                    text: watch.filteringByGroup ?? S.of(context).chosesGroup,
                     color: AppColors.lightGrey,
                   ),
                   Icon(
@@ -95,9 +98,9 @@ class _CreateListViewState extends State<CreateListView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        watch.fromDateTEXT != null
+                        watch.fromDate != null
                             ? CustomText(
-                                text: watch.fromDateTEXT ?? "",
+                                text: watch.fromDate ?? "",
                                 color: AppColors.lightGrey,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               )
@@ -121,9 +124,9 @@ class _CreateListViewState extends State<CreateListView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        watch.toDateTEXT != null
+                        watch.toDate != null
                             ? CustomText(
-                                text: watch.toDateTEXT ?? "",
+                                text: watch.toDate ?? "",
                                 color: AppColors.lightGrey,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               )
@@ -191,7 +194,7 @@ class _CreateListViewState extends State<CreateListView> {
                       fontWeight: FontWeightManger.semiBold,
                       fontSize: 14.sp,
                     ),
-                    onPressed: () => read.createList(),
+                    onPressed: () => read.createList(widget.employees),
                   ),
                 ),
               ],

@@ -4,13 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:workhours/common/helper/date_time.dart';
+import 'package:workhours/common/routes/routes.dart';
 import 'package:workhours/common/services/navigation_services.dart';
 import 'package:workhours/common/utils/key_storage.dart';
 import 'package:workhours/common/utils/utils.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
-import 'package:workhours/features/home/presentations/providers/home_provider.dart';
+import 'package:workhours/generated/l10n.dart';
 
 class NewEmployeeProvider extends ChangeNotifier {
   BuildContext _context = NavigationService.context;
@@ -23,7 +23,7 @@ class NewEmployeeProvider extends ChangeNotifier {
   final newGroupTEXT = TextEditingController();
   String? vacationFromTEXT;
   String? vacationsToTEXT;
-  String? groupTEXT;
+  String groupTEXT = '';
   bool isLoadingEmp = false;
   bool isLoadingGro = false;
 
@@ -67,6 +67,10 @@ class NewEmployeeProvider extends ChangeNotifier {
 
   addEmployee(int? numOfEmp) {
     FocusManager.instance.primaryFocus?.unfocus();
+    if (groupTEXT.isEmpty) {
+      Utils.showError(S.of(_context).chosesGroup);
+      return;
+    }
     if (globalKey.currentState!.validate()) {
       isLoadingEmp = true;
       notifyListeners();
@@ -80,21 +84,21 @@ class NewEmployeeProvider extends ChangeNotifier {
               name: nameTEXT.text.trim(),
               phone: phoneTEXT.text.trim(),
               isAvailable: isDateTimeBetween(
-                  DateTime.now(),
-                  parseDateTime(vacationFromTEXT),
-                  parseDateTime(vacationsToTEXT)),
+                parseDateTime(DateFormat().add_yMEd().format(DateTime.now())),
+                vacationFromTEXT,
+                vacationsToTEXT,
+              ),
               group: groupTEXT ?? newGroupTEXT.text.trim(),
               vacationFrom: vacationFromTEXT,
               vacationsTo: vacationsToTEXT,
             ).toMap(),
           )
-          .then((value) {
+          .then((value) async {
         log("added Successful");
-        _addEmployeeToGroup(numOfEmp);
-        Provider.of<HomeProvider>(_context).getAllEmployees();
+        await _addEmployeeToGroup(numOfEmp);
         isLoadingEmp = false;
         notifyListeners();
-        _context.pop();
+        _context.pushReplacementNamed(RoutesStrings.home);
       }).catchError((error) {
         log("Error $error");
         Utils.showError(error);
@@ -114,9 +118,10 @@ class NewEmployeeProvider extends ChangeNotifier {
             name: nameTEXT.text.trim(),
             phone: phoneTEXT.text.trim(),
             isAvailable: isDateTimeBetween(
-                DateTime.now(),
-                parseDateTime(vacationFromTEXT),
-                parseDateTime(vacationsToTEXT)),
+              parseDateTime(DateFormat().add_yMEd().format(DateTime.now())),
+              vacationFromTEXT,
+              vacationsToTEXT,
+            ),
             group: groupTEXT ?? newGroupTEXT.text.trim(),
             vacationFrom: vacationFromTEXT,
             vacationsTo: vacationsToTEXT,

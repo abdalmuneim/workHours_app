@@ -138,12 +138,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               prefixIconColor: widget.prefixIconColor,
               contentPadding: EdgeInsets.symmetric(horizontal: 10),
               hintText: widget.hintText,
-              hintStyle: Theme.of(context).textTheme.bodyMedium,
+              hintStyle: Theme.of(context).textTheme.bodySmall,
               // labelText: widget.labelText,
-              labelStyle: Theme.of(context).textTheme.titleLarge,
+              labelStyle: Theme.of(context).textTheme.labelSmall,
               errorStyle: Theme.of(context)
                   .textTheme
-                  .bodyLarge!
+                  .bodySmall!
                   .copyWith(color: AppColors.red),
               filled: true,
               fillColor: widget.fillColor ?? fillColor,

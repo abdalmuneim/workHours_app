@@ -36,7 +36,7 @@ class CustomText extends StatelessWidget {
       text,
       style: style ??
           Theme.of(context).textTheme.labelSmall!.copyWith(
-                fontSize: fontSize ?? 10.sp,
+                fontSize: fontSize ?? 8.sp,
                 color: color,
                 fontWeight: fontWeight,
                 backgroundColor: backgroundColor,

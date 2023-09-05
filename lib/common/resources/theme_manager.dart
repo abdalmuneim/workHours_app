@@ -81,7 +81,7 @@ ThemeData get applicationTheme => ThemeData(
           ),
           textStyle: TextStyle(
             fontFamily: FontManager.fontFamily,
-            fontSize: 14.sp,
+            fontSize: 10.sp,
             color: AppColors.black,
             fontWeight: FontWeight.bold,
           ),
@@ -127,7 +127,7 @@ ThemeData get applicationTheme => ThemeData(
         ),
         labelSmall: TextStyle(
           fontFamily: FontManager.fontFamily,
-          fontSize: 12.sp,
+          fontSize: 10.sp,
           fontWeight: FontWeightManger.medium,
           color: AppColors.black,
         ),

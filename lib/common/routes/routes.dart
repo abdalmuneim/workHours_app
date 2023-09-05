@@ -9,7 +9,7 @@ import 'package:workhours/features/auth/presentations/views/new_password_view.da
 import 'package:workhours/features/auth/presentations/views/sign_in_view.dart';
 import 'package:workhours/features/auth/presentations/views/sign_up_view.dart';
 import 'package:workhours/features/auth/presentations/views/verify_email_view.dart';
-import 'package:workhours/features/create_list/presentations/views/create_list_view.dart';
+import 'package:workhours/features/create_list/presentations/views/form_create_list_view.dart';
 import 'package:workhours/features/create_list/presentations/views/list_of_employees_view.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/features/home/presentations/views/edit_employee_view.dart';
@@ -103,7 +103,13 @@ class Routes {
         name: RoutesStrings.createList,
         path: RoutesStrings.createList,
         builder: (BuildContext context, GoRouterState state) {
-          return const CreateListView();
+          List<EmployeeModel> employees = state.extra as List<EmployeeModel>;
+          log(employees.length.toString());
+
+          // List<EmployeeModel> genres = employees.map((item) => item as EmployeeModel).toList();
+          return CreateListView(
+            employees: employees,
+          );
         },
       ),
 
@@ -112,7 +118,12 @@ class Routes {
         name: RoutesStrings.listOfEmployees,
         path: RoutesStrings.listOfEmployees,
         builder: (BuildContext context, GoRouterState state) {
-          return const ListOfEmployeesView();
+          List<EmployeeModel> employees = state.extra as List<EmployeeModel>;
+          log(employees.length.toString());
+          // List<EmployeeModel> genres = employees.map((item) => item as EmployeeModel).toList();
+          return ListOfEmployeesView(
+            employees: employees,
+          );
         },
       ),
 

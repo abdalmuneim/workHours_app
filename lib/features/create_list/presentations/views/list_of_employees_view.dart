@@ -11,11 +11,13 @@ import 'package:workhours/common/widgets/custom_elevated_button.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
 import 'package:workhours/features/create_list/presentations/providers/list_of_employees_provider.dart';
 import 'package:workhours/features/create_list/presentations/views/widgets/list_of_employees.dart';
+import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/generated/assets/assets.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class ListOfEmployeesView extends StatefulWidget {
-  const ListOfEmployeesView({super.key});
+  const ListOfEmployeesView({super.key, required this.employees});
+  final List<EmployeeModel> employees;
 
   @override
   State<ListOfEmployeesView> createState() => _ListOfEmployeesViewState();
@@ -24,6 +26,10 @@ class ListOfEmployeesView extends StatefulWidget {
 class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
   late ListOfEmployeesProvider read = context.read<ListOfEmployeesProvider>();
   late ListOfEmployeesProvider watch = context.watch<ListOfEmployeesProvider>();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +42,11 @@ class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
         alignment: Alignment.bottomCenter,
         children: [
           /// body
-          RepaintBoundary(key: watch.widgetKey, child: ListOfEmployeesWidget()),
+          RepaintBoundary(
+              key: watch.widgetKey,
+              child: ListOfEmployeesWidget(employees: widget.employees)),
 
-          /// share button
+          /// buttons
           Container(
             width: 100.w,
             height: 90,
@@ -57,6 +65,7 @@ class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
             padding: EdgeInsets.all(20),
             child: Row(
               children: [
+                /// share button
                 Expanded(
                   child: CustomElevatedButton(
                     color: AppColors.white,
@@ -80,10 +89,12 @@ class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
                           ),
                     onPressed: watch.isLoadShare
                         ? null
-                        : () => read.shareListOnWhatsApp(),
+                        : () => read.shareListOnWhatsApp(widget.employees),
                   ),
                 ),
                 3.w.sw,
+
+                /// save button
                 Expanded(
                   child: CustomElevatedButton(
                     child: watch.isLoadSave
@@ -93,7 +104,9 @@ class _ListOfEmployeesViewState extends State<ListOfEmployeesView> {
                             fontWeight: FontWeightManger.semiBold,
                             fontSize: 12.sp,
                           ),
-                    onPressed: watch.isLoadSave ? null : () => read.saveList(),
+                    onPressed: watch.isLoadSave
+                        ? null
+                        : () => read.saveList(widget.employees),
                   ),
                 ),
               ],

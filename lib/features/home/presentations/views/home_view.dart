@@ -261,18 +261,19 @@ class _HomeViewState extends State<HomeView> {
                               )
                             : Expanded(
                                 child: ListOfEmployees(
-                                    employees: value.allEmployees))),
+                                    employees: value.allEmployees),
+                              )),
+                watch.allEmployees.isNotEmpty ? 10.h.sh : 0.w.sw,
               ],
             ),
           ),
 
           /// create list button
-
           Consumer<HomeProvider>(
             builder: (context, homePro, _) => homePro.allEmployees.isNotEmpty
                 ? Container(
                     width: 100.w,
-                    height: 90,
+                    height: 10.h,
                     decoration: BoxDecoration(
                       color: AppColors.white,
                       boxShadow: [

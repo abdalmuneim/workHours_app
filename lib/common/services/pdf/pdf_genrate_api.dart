@@ -31,14 +31,17 @@ import 'package:flutter/services.dart';
 import 'package:pdf/widgets.dart';
 
 import 'package:pdf/pdf.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:workhours/common/helper/date_time.dart';
 import 'package:workhours/common/services/pdf/pdf_api.dart';
 import 'package:workhours/common/services/navigation_services.dart';
+import 'package:workhours/features/create_list/presentations/providers/create_list_provider.dart';
 import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class PdfGenerateApi {
-  static Future<File> generate(EmployeeModel employee) async {
+  static Future<File> generate(List<EmployeeModel> employee) async {
     final pdf = Document();
 
     // Load your custom font
@@ -63,9 +66,9 @@ class PdfGenerateApi {
               child: Column(
                 children: [
                   _buildHead(),
-                  for (var i = 0; i <= 100; i++) ...[
+                  for (var i = 0; i < employee.length; i++) ...[
                     // buildHead(),
-                    _listOfEmployeesWidget(context, employee, i),
+                    _listOfEmployeesWidget(context, employee[i]),
                   ]
                 ],
               ),
@@ -107,13 +110,13 @@ class PdfGenerateApi {
                   text: "${S.of(_context).from} ",
                 ),
                 TextSpan(
-                  text: "الاحد 1/9/2023",
+                  text: Provider.of<CreateListProvider>(_context).fromDate,
                 ),
                 TextSpan(
                   text: " ${S.of(_context).to} ",
                 ),
                 TextSpan(
-                  text: "الخميس 4/9/2023",
+                  text: Provider.of<CreateListProvider>(_context).toDate,
                 ),
               ],
             ),
@@ -166,15 +169,7 @@ class PdfGenerateApi {
     );
   }
 
-  static Widget _listOfEmployeesWidget(
-      Context context, EmployeeModel employee, int index) {
-    String group = List.generate(
-        101,
-        (i) => i % 2 == 0
-            ? "أ"
-            : i % 3 == 0
-                ? "ج"
-                : "ب")[index];
+  static Widget _listOfEmployeesWidget(Context context, EmployeeModel emp) {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 5, left: 30),
       child: Row(
@@ -182,7 +177,7 @@ class PdfGenerateApi {
         children: <Widget>[
           /// group
           Text(
-            group,
+            emp.group ?? "",
             textAlign: TextAlign.right,
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -193,7 +188,7 @@ class PdfGenerateApi {
 
           /// name
           Text(
-            "محمد احمد",
+            emp.name ?? "",
             textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: 18,
@@ -204,7 +199,7 @@ class PdfGenerateApi {
 
           /// date
           Text(
-            "1/1/2023",
+            emp.workingFrom ?? "",
             textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: 18,
@@ -215,7 +210,7 @@ class PdfGenerateApi {
 
           /// day
           Text(
-            "الاحد\Monday",
+            parseDateTime(emp.workingFrom)?.day.toString() ?? "",
             textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: 18,

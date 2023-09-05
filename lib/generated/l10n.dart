@@ -1209,6 +1209,16 @@ class S {
       args: [],
     );
   }
+
+  /// `اختر مجموعة`
+  String get chosessGroup {
+    return Intl.message(
+      'اختر مجموعة',
+      name: 'chosessGroup',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

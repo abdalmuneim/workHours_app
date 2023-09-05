@@ -92,13 +92,16 @@ class _NewEmployeeViewState extends State<NewEmployeeView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           CustomText(
-                            text: watch.groupTEXT ?? S.of(context).chosesGroup,
+                            text: watch.groupTEXT.isEmpty
+                                ? S.of(context).chosesGroup
+                                : watch.groupTEXT,
                             color: AppColors.lightGrey,
+                            fontSize: 8.sp,
                           ),
                           Icon(
                             Icons.keyboard_arrow_down,
                             color: AppColors.lightGrey,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -114,7 +117,7 @@ class _NewEmployeeViewState extends State<NewEmployeeView> {
                       child: CustomText(
                         text: S.of(context).addNewGroup,
                         fontWeight: FontWeightManger.regular,
-                        fontSize: 10.sp,
+                        fontSize: 8.sp,
                         color: AppColors.darkGrey,
                       ),
                       onPressed: () {

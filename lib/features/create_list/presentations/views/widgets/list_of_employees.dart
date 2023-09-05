@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:workhours/common/resources/app_color.dart';
 import 'package:workhours/common/resources/font_manager.dart';
 import 'package:workhours/common/utils/extension.dart';
 import 'package:workhours/common/widgets/custom_text.dart';
+import 'package:workhours/features/create_list/presentations/providers/create_list_provider.dart';
+import 'package:workhours/features/home/data/model/employee_model.dart';
 import 'package:workhours/generated/l10n.dart';
 
 class ListOfEmployeesWidget extends StatelessWidget {
   const ListOfEmployeesWidget({
     super.key,
+    required this.employees,
   });
+  final List<EmployeeModel> employees;
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +45,13 @@ class ListOfEmployeesWidget extends StatelessWidget {
                     text: "${S.of(context).from} ",
                   ),
                   TextSpan(
-                    text: "الاحد 1/9/2023",
+                    text: Provider.of<CreateListProvider>(context).fromDate,
                   ),
                   TextSpan(
                     text: " ${S.of(context).to} ",
                   ),
                   TextSpan(
-                    text: "الخميس 4/9/2023",
+                    text: Provider.of<CreateListProvider>(context).toDate,
                   ),
                 ],
               ),
@@ -79,15 +84,9 @@ class ListOfEmployeesWidget extends StatelessWidget {
             height: 70.h,
             child: ListView.builder(
               padding: EdgeInsets.only(left: 30),
-              itemCount: 100,
+              itemCount: employees.length,
               itemBuilder: (context, index) {
-                String group = List.generate(
-                    100,
-                    (i) => i % 2 == 0
-                        ? "أ"
-                        : i % 3 == 0
-                            ? "ج"
-                            : "ب")[index];
+                EmployeeModel emp = employees[index];
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
@@ -95,14 +94,14 @@ class ListOfEmployeesWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       CustomText(
-                        text: "محمد احمد",
+                        text: emp.name ?? "",
                         fontWeight: FontWeightManger.medium,
-                        fontSize: 14.sp,
+                        fontSize: 10.sp,
                       ),
                       CustomText(
-                        text: group,
+                        text: emp.group ?? "",
                         fontWeight: FontWeightManger.medium,
-                        fontSize: 14.sp,
+                        fontSize: 10.sp,
                         color: AppColors.darkGrey,
                       ),
                     ],

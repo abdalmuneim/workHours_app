@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تحقق من الايميل او كلمة المرور"),
         "chosesDate": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
         "chosesGroup": MessageLookupByLibrary.simpleMessage("اختر المجموعة"),
+        "chosessGroup": MessageLookupByLibrary.simpleMessage("اختر مجموعة"),
         "confirmNewPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور الجديدة"),
         "confirmPassword":
