@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("ألغاء"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "changedPasswordSuccess":
+            MessageLookupByLibrary.simpleMessage("تم تغير كلمه السر بنجاح"),
         "checkAllFields":
             MessageLookupByLibrary.simpleMessage("تحقق من جميع العقول"),
         "checkUEmail":
@@ -73,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createList": MessageLookupByLibrary.simpleMessage("انشاء قائمة"),
         "createdAccountSuccess":
             MessageLookupByLibrary.simpleMessage("تم انشاء الحساب بنجاح"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("كلمه المرور احاليه"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),

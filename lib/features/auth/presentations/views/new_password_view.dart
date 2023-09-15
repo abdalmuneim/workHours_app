@@ -63,6 +63,17 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                     ),
                     4.h.sh,
 
+                    CustomTextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: watch.currentPasswordTEXT,
+                      border: true,
+                      hintText: S.of(context).currentPassword,
+                      labelText: S.of(context).password,
+                      validator: (value) => AppValidator.validateFields(
+                          value, ValidationType.password, context),
+                      obscureText: true,
+                    ),
+
                     /// new password
                     CustomTextFormField(
                       keyboardType: TextInputType.text,

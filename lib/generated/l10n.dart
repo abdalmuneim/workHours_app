@@ -1219,6 +1219,26 @@ class S {
       args: [],
     );
   }
+
+  /// `كلمه المرور احاليه`
+  String get currentPassword {
+    return Intl.message(
+      'كلمه المرور احاليه',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تغير كلمه السر بنجاح`
+  String get changedPasswordSuccess {
+    return Intl.message(
+      'تم تغير كلمه السر بنجاح',
+      name: 'changedPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

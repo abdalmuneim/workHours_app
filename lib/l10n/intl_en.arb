@@ -142,5 +142,7 @@
   "plzAddEmployee": "برجاء اضافة موظفين",
   "connectingWithUs": "تواصل معنا",
   "updataSuccess": "تم التحديث بنجاح",
-  "chosessGroup": "اختر مجموعة"
+  "chosessGroup": "اختر مجموعة",
+  "currentPassword": "كلمه المرور احاليه",
+  "changedPasswordSuccess": "تم تغير كلمه السر بنجاح"
 }
